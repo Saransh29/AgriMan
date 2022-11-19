@@ -2,19 +2,38 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'models/weather_info.dart';
+import 'templates/weather_model.dart';
 import 'utils/constants.dart';
 // import './templates/user_info_page.dart';
 
-Future<WeatherInfo> getWeather(String city) async {
-  final queryParameters = {'q': city, 'appid': api_key};
-  final uri = Uri.https(w_link, '/data/2.5/weather', queryParameters);
+// Future<WeatherInfo> getWeather(String city) async {
+//   final queryParameters = {'q': city, 'appid': api_key};
+//   final uri = Uri.https(w_link, '/data/2.5/weather', queryParameters);
 
-  final response = await get(uri);
+//   final response = await get(uri);
 
-  WeatherInfo info = WeatherInfo(jsonDecode(response.body));
-  return info;
+//   WeatherInfo info = WeatherInfo(jsonDecode(response.body));
+//   return info;
+// }
+Future<WeatherResponse> getWeather(String city) async {
+  // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+  final queryParameters = {
+    'q': city,
+    'appid': '6e1c4180ff94fa76a60376fd7857da97',
+    'units': 'metric'
+  };
+
+  final uri =
+      Uri.https('api.openweathermap.org', '/data/2.5/weather', queryParameters);
+
+  final response = await http.get(uri);
+
+  print(response.body);
+  final json = jsonDecode(response.body);
+  return WeatherResponse.fromJson(json);
 }
 
 class Home extends StatefulWidget {
