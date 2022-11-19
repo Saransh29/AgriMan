@@ -51,4 +51,6 @@ class WeatherInfo {
   String toString() {
     return 'WeatherInfo : {temp : ${toGoodTempString(this.temperature)} , sunrise: ${this.sunRise} , sunset: ${this.sunSet} , hum: ${this.humidity} , w_sp: ${this.windSpeed} , w_deg : ${this.windDeg} }';
   }
+  // change it to a better format
+  
 }
