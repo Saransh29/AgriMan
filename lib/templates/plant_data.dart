@@ -59,9 +59,7 @@ class _PlantDataState extends State<PlantData> {
   }
 
   Future<void> readDataFromFirebase() async {
-    // Please replace the Database URL
-    // which we will get in “Add Realtime Database”
-    // step with DatabaseURL
+// added firebase realtime database
 
     var url = "https://agri-37771-default-rtdb.firebaseio.com/";
     var tempUrl = url + "temp.json";
@@ -73,6 +71,7 @@ class _PlantDataState extends State<PlantData> {
     updateVarsFromFirebase(mosUrl, 2);
   }
 
+// added firebase realtime database
   Future<void> attachStatus(String device) async {
     var url = "https://agri-37771-default-rtdb.firebaseio.com/" +
         device +
