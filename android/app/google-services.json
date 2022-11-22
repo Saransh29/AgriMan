@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "691499025180",
+    "project_id": "cropdata-fa565",
+    "storage_bucket": "cropdata-fa565.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691499025180:android:220c91151c069c336e30d9",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691499025180-dtkpa46mn0ikco2jurm57bvcm2sgg0ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaciCXYjWEdbWH19lBxNOZed27cCQO9aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691499025180-dtkpa46mn0ikco2jurm57bvcm2sgg0ve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

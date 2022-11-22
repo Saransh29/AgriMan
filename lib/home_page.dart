@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'models/weather_info.dart';
 import 'templates/weather_model.dart';
 import 'utils/constants.dart';
+import 'NewAuth/methods.dart';
 // import './templates/user_info_page.dart';
 
 // Future<WeatherInfo> getWeather(String city) async {
@@ -53,6 +54,8 @@ class _HomeState extends State<Home> {
         title: Text('Main Menu'),
         centerTitle: true,
         actions: [
+          IconButton(
+              icon: Icon(Icons.logout), onPressed: () => logOut(context)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
