@@ -1,6 +1,7 @@
 import 'auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
+import 'package:agriman/theme.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _CreateAccountState extends State<CreateAccount> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: primColors.back,
       body: isLoading
           ? Center(
               child: Container(
@@ -112,7 +113,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     // width: size.width / 2,
                     alignment: Alignment.center,
                     child: Text(
-                      "Made with ❤ by Saransh Bibiyan",
+                      "",
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: size.height / 45,
