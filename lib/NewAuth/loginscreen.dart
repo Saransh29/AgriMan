@@ -1,3 +1,5 @@
+import 'package:agriman/theme.dart';
+
 import 'auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
@@ -17,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromARGB(255, 43, 50, 62),
       body: isLoading
           ? Center(
               child: Container(
@@ -41,22 +43,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: size.height / 35,
                   ),
+                  // Container(
+                  //   alignment: Alignment.topCenter,
+                  //   height: size.height / 4,
+                  //   // width: size.width / 1.1,
+                  //   child: Image.asset(
+                  //     "assets/images/img.png",
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
                   Container(
-                    alignment: Alignment.topCenter,
-                    height: size.height / 4,
-                    // width: size.width / 1.1,
-                    child: Image.asset(
-                      "assets/images/img.png",
-                      fit: BoxFit.cover,
+                    width: size.width / 1.11,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "AGRIMAN",
+                      style: TextStyle(
+                        color: primColors.primary,
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   // Container(
-                  //   width: size.width / 1.11,
+                  //   // width: size.width / 2,
+                  //   alignment: Alignment.center,
                   //   child: Text(
-                  //     "Welcome",
+                  //     "Made with ❤ by Saransh Bibiyan",
                   //     style: TextStyle(
-                  //       fontSize: 34,
-                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.blue,
+                  //       fontSize: size.height / 45,
+                  //       fontWeight: FontWeight.w500,
                   //     ),
                   //   ),
                   // ),
@@ -72,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   //   ),
                   // ),
                   SizedBox(
-                    height: size.height / 40,
+                    height: size.height / 7,
                   ),
                   Container(
                     width: size.width,
@@ -100,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text(
                       "Create Account",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: primColors.primary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -109,18 +125,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: size.height / 10,
                   ),
-                  Container(
-                    // width: size.width / 2,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Made with ❤ by Saransh Bibiyan",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: size.height / 45,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   // width: size.width / 2,
+                  //   alignment: Alignment.center,
+                  //   child: Text(
+                  //     "Made with ❤ by Saransh Bibiyan",
+                  //     style: TextStyle(
+                  //       color: Colors.blue,
+                  //       fontSize: size.height / 45,
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -159,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
         width: size.width / 1.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Colors.blue,
+          color: primColors.primary,
         ),
         alignment: Alignment.center,
         child: Text(
