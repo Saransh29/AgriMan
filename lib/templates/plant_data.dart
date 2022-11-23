@@ -151,22 +151,40 @@ class _PlantDataState extends State<PlantData> {
                         max: 100,
                         initialValue: double.parse(temp),
                       ),
+                      // FlutterSwitch(
+                      //   activeIcon: Icon(Icons.ac_unit),
+                      //   inactiveIcon: Icon(Icons.wb_sunny),
+                      //   width: 125.0,
+                      //   height: 55.0,
+                      //   valueFontSize: 25.0,
+                      //   toggleSize: 45.0,
+                      //   value: fanMotorStatus,
+                      //   borderRadius: 30.0,
+                      //   padding: 8.0,
+                      //   showOnOff: true,
+                      //   onToggle: (val) {
+                      //     setState(() {
+                      //       fanMotorStatus = val;
+                      //       print(fanMotorStatus);
+                      //       toggleStatus('Fan');
+                      //     });
+                      //   },
+                      // ),
                       FlutterSwitch(
-                        activeIcon: Icon(Icons.ac_unit),
-                        inactiveIcon: Icon(Icons.wb_sunny),
+                        activeIcon: Icon(Icons.water),
+                        inactiveIcon: Icon(Icons.settings_power_rounded),
                         width: 125.0,
                         height: 55.0,
                         valueFontSize: 25.0,
                         toggleSize: 45.0,
-                        value: fanMotorStatus,
+                        value: waterPumpStatus,
                         borderRadius: 30.0,
                         padding: 8.0,
                         showOnOff: true,
                         onToggle: (val) {
                           setState(() {
-                            fanMotorStatus = val;
-                            print(fanMotorStatus);
-                            toggleStatus('Fan');
+                            waterPumpStatus = val;
+                            toggleStatus('Motor');
                           });
                         },
                       ),
@@ -211,61 +229,44 @@ class _PlantDataState extends State<PlantData> {
                         max: 100,
                         initialValue: double.parse(moisture),
                       ),
-                      FlutterSwitch(
-                        activeIcon: Icon(Icons.water),
-                        inactiveIcon: Icon(Icons.settings_power_rounded),
-                        width: 125.0,
-                        height: 55.0,
-                        valueFontSize: 25.0,
-                        toggleSize: 45.0,
-                        value: waterPumpStatus,
-                        borderRadius: 30.0,
-                        padding: 8.0,
-                        showOnOff: true,
-                        onToggle: (val) {
-                          setState(() {
-                            waterPumpStatus = val;
-                            toggleStatus('Motor');
-                          });
-                        },
-                      ),
+                      SleekCircularSlider(
+                        appearance: CircularSliderAppearance(
+                            customWidths: CustomSliderWidths(
+                                trackWidth: 0.6,
+                                progressBarWidth: 10,
+                                shadowWidth: 10),
+                            customColors: CustomSliderColors(
+                                trackColor: HexColor('#0277bd'),
+                                progressBarColor: HexColor('#4FC3F7'),
+                                shadowColor: HexColor('#B2EBF2'),
+                                shadowMaxOpacity: 0.5, //);
+                                shadowStep: 20),
+                            infoProperties: InfoProperties(
+                                bottomLabelStyle: TextStyle(
+                                    color: HexColor('#6DA100'),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                                bottomLabelText: 'Humidity',
+                                mainLabelStyle: TextStyle(
+                                    color: HexColor('#54826D'),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600),
+                                modifier: (double value) {
+                                  return '${double.parse(hum).toStringAsFixed(2)} %';
+                                }),
+                            startAngle: 90,
+                            angleRange: 360,
+                            size: 128,
+                            animationEnabled: true),
+                        min: 0,
+                        max: 100,
+                        initialValue: double.parse(hum),
+                      )
                     ],
                   ),
                   SizedBox(height: 28),
-                  Center(
-                      child: SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                        customWidths: CustomSliderWidths(
-                            trackWidth: 0.6,
-                            progressBarWidth: 10,
-                            shadowWidth: 10),
-                        customColors: CustomSliderColors(
-                            trackColor: HexColor('#0277bd'),
-                            progressBarColor: HexColor('#4FC3F7'),
-                            shadowColor: HexColor('#B2EBF2'),
-                            shadowMaxOpacity: 0.5, //);
-                            shadowStep: 20),
-                        infoProperties: InfoProperties(
-                            bottomLabelStyle: TextStyle(
-                                color: HexColor('#6DA100'),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600),
-                            bottomLabelText: 'Humidity',
-                            mainLabelStyle: TextStyle(
-                                color: HexColor('#54826D'),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
-                            modifier: (double value) {
-                              return '${double.parse(hum).toStringAsFixed(2)} %';
-                            }),
-                        startAngle: 90,
-                        angleRange: 360,
-                        size: 128,
-                        animationEnabled: true),
-                    min: 0,
-                    max: 100,
-                    initialValue: double.parse(hum),
-                  ))
+                  // Center(
+                  //     child:
                 ],
               )
             ],
