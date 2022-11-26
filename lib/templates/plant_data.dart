@@ -34,8 +34,9 @@ class _PlantDataState extends State<PlantData> {
   void initState() {
     super.initState();
     readDataFromFirebase();
-    attachStatus('Fan');
-    attachStatus('Motor');
+    // attachStatus('Fan');
+    // attachStatus('Motor_Value');
+    waterstatus();
     Timer _ = Timer.periodic(const Duration(seconds: 5), (timer) {
       readDataFromFirebase();
     });
@@ -71,32 +72,60 @@ class _PlantDataState extends State<PlantData> {
     updateVarsFromFirebase(mosUrl, 2);
   }
 
-// added firebase realtime database
-  Future<void> attachStatus(String device) async {
-    var url = "https://agri-37771-default-rtdb.firebaseio.com/" +
-        device +
-        "/value.json";
+  Future<void> waterstatus() async {
+    var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_Value.json";
     final response = await http.get(Uri.parse(url));
     setState(() {
-      if (device == "Fan")
-        fanMotorStatus = response.body == "true" ? false : true;
-      else
-        waterPumpStatus = response.body == "true" ? false : true;
+      waterPumpStatus = response.body == "true" ? true : false;
     });
   }
 
-  Future<void> toggleStatus(String device) async {
-    var url = globalServerLink + device;
-    var status = device == "Fan" ? fanMotorStatus : waterPumpStatus;
+  Future<void> togglewater() async {
+    var url = "https://agri-37771-default-rtdb.firebaseio.com/";
+    var status = waterPumpStatus;
 
     final _ = await http.post(
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, bool>{'value': !status}),
+      body: jsonEncode(<String, bool>{'Motor_Value': !status}),
     );
   }
+
+// added firebase realtime database
+  // Future<void> attachStatus(String device) async {
+  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json";
+  //   final response = await http.get(Uri.parse(url));
+  //   print(response.body);
+  //   setState(() {
+  //     waterPumpStatus = response.body == "true" ? true : false;
+  //   });
+  // }
+
+// device = Motor_value
+  // Future<void> toggleStatus(String device) async {
+  //   var url = globalServerLink;
+  //   var status = waterPumpStatus;
+
+  //   final _ = await http.post(
+  //     Uri.parse(url),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //     body: jsonEncode(<String, bool>{'Motor_Value': !status}),
+  //   );
+  // }
+
+  // Future<void> helper() async {
+  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json";
+  //   final response = await http.get(Uri.parse(url));
+  // }
+
+  // Future<http.Response> datahelper() {
+  //   return http.get(Uri.parse(
+  //       'https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json'));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +213,7 @@ class _PlantDataState extends State<PlantData> {
                         onToggle: (val) {
                           setState(() {
                             waterPumpStatus = val;
-                            toggleStatus('Motor');
+                            togglewater();
                           });
                         },
                       ),
@@ -268,7 +297,8 @@ class _PlantDataState extends State<PlantData> {
                   // Center(
                   //     child:
                 ],
-              )
+              ),
+              Container()
             ],
           ),
         ),
