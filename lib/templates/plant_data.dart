@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:agriman/models/plant_model.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -77,6 +78,23 @@ class _PlantDataState extends State<PlantData> {
     final response = await http.get(Uri.parse(url));
     setState(() {
       waterPumpStatus = response.body == "true" ? true : false;
+    });
+  }
+
+  //update the motor value in firebase realtime database
+  Future<void> updateMotorValue(bool value) async {
+    DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
+
+    await databaseRef.update({
+      "Motor_value": value,
+    });
+  }
+
+  Future<void> checker() async {
+    DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
+
+    await databaseRef.update({
+      "moisture": 15,
     });
   }
 
@@ -213,7 +231,7 @@ class _PlantDataState extends State<PlantData> {
                         onToggle: (val) {
                           setState(() {
                             waterPumpStatus = val;
-                            togglewater();
+                            updateMotorValue(val);
                           });
                         },
                       ),
