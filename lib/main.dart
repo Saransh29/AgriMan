@@ -4,8 +4,7 @@ import 'package:agriman/home_page.dart';
 import 'package:agriman/templates/weather_info.dart';
 import 'package:agriman/templates/crops.dart';
 import 'package:agriman/templates/user_info_page.dart';
-import 'package:agriman/auth/login.dart';
-import 'package:agriman/auth/registration.dart';
+
 import 'package:agriman/auth/personal.dart';
 import 'package:agriman/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
