@@ -35,8 +35,6 @@ class _PlantDataState extends State<PlantData> {
   void initState() {
     super.initState();
     readDataFromFirebase();
-    // attachStatus('Fan');
-    // attachStatus('Motor_Value');
     waterstatus();
     Timer _ = Timer.periodic(const Duration(seconds: 5), (timer) {
       readDataFromFirebase();
@@ -82,6 +80,9 @@ class _PlantDataState extends State<PlantData> {
   }
 
   //to update the motor value in firebase realtime database
+  //-----------------------/
+  // WORKING
+  //------------------------/
   void updateMotorValue(bool val) {
     var url = globalServerLink;
     DatabaseReference databaseRef = FirebaseDatabase.instance.refFromURL(url);
