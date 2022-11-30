@@ -81,13 +81,11 @@ class _PlantDataState extends State<PlantData> {
     });
   }
 
-  //update the motor value in firebase realtime database
-  Future<void> updateMotorValue(bool value) async {
-    DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
-
-    await databaseRef.update({
-      "Motor_value": value,
-    });
+  //to update the motor value in firebase realtime database
+  void updateMotorValue(bool val) {
+    var url = globalServerLink;
+    DatabaseReference databaseRef = FirebaseDatabase.instance.refFromURL(url);
+    databaseRef.child("User").update({"value": val});
   }
 
   Future<void> checker() async {

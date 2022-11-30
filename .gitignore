@@ -32,9 +32,8 @@ tasks_mohit.txt
 .pub-cache/
 .pub/
 /build/
-
+lib/utils/
 # Web related
-lib/generated_plugin_registrant.dart
 # Symbolication related
 app.*.symbols
 
