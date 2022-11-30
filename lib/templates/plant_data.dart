@@ -72,7 +72,8 @@ class _PlantDataState extends State<PlantData> {
   }
 
   Future<void> waterstatus() async {
-    var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_Value.json";
+    var url =
+        "https://cropdata-fa565-default-rtdb.firebaseio.com/User/value.json";
     final response = await http.get(Uri.parse(url));
     setState(() {
       waterPumpStatus = response.body == "true" ? true : false;
@@ -89,26 +90,26 @@ class _PlantDataState extends State<PlantData> {
     databaseRef.child("User").update({"value": val});
   }
 
-  Future<void> checker() async {
-    DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
+  // Future<void> checker() async {
+  //   DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
 
-    await databaseRef.update({
-      "moisture": 15,
-    });
-  }
+  //   await databaseRef.update({
+  //     "moisture": 15,
+  //   });
+  // }
 
-  Future<void> togglewater() async {
-    var url = "https://agri-37771-default-rtdb.firebaseio.com/";
-    var status = waterPumpStatus;
+  // Future<void> togglewater() async {
+  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/";
+  //   var status = waterPumpStatus;
 
-    final _ = await http.post(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, bool>{'Motor_Value': !status}),
-    );
-  }
+  //   final _ = await http.post(
+  //     Uri.parse(url),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //     body: jsonEncode(<String, bool>{'Motor_Value': !status}),
+  //   );
+  // }
 
 // added firebase realtime database
   // Future<void> attachStatus(String device) async {

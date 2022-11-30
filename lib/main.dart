@@ -1,4 +1,5 @@
 import 'package:agriman/NewAuth/auth.dart';
+import 'package:agriman/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
 import 'package:agriman/templates/weather_info.dart';
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //home: Authenticate(),
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.light(),
       routes: {
         '/': (context) => Authenticate(),
         '/home': (context) => Home(),
