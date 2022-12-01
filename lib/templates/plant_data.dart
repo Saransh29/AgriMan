@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:agriman/models/plant_model.dart';
+import 'package:agriman/templates/toggle.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -61,7 +62,7 @@ class _PlantDataState extends State<PlantData> {
   Future<void> readDataFromFirebase() async {
 // added firebase realtime database
 
-    var url = "https://agri-37771-default-rtdb.firebaseio.com/";
+    var url = "https://cropdata-fa565-default-rtdb.firebaseio.com/User/";
     var tempUrl = url + "temp.json";
     var humUrl = url + "humidity.json";
     var mosUrl = url + "moisture.json";
@@ -81,7 +82,7 @@ class _PlantDataState extends State<PlantData> {
   }
 
   //to update the motor value in firebase realtime database
-  //-----------------------/
+  //------------------------/
   // WORKING
   //------------------------/
   void updateMotorValue(bool val) {
@@ -214,6 +215,16 @@ class _PlantDataState extends State<PlantData> {
                       //       fanMotorStatus = val;
                       //       print(fanMotorStatus);
                       //       toggleStatus('Fan');
+                      //     });
+                      //   },
+                      // ),
+                      //adding new toggle button
+                      // Toggle(
+                      //   value: waterPumpStatus,
+                      //   onToggle: (val) {
+                      //     setState(() {
+                      //       waterPumpStatus = val;
+                      //       updateMotorValue(val);
                       //     });
                       //   },
                       // ),
