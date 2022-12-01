@@ -1,3 +1,4 @@
+import '../temputil.dart';
 import 'auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
@@ -19,7 +20,7 @@ class _CreateAccountState extends State<CreateAccount> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: primColors.back,
+      backgroundColor: white,
       body: isLoading
           ? Center(
               child: Container(
@@ -32,14 +33,14 @@ class _CreateAccountState extends State<CreateAccount> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: size.height / 20,
+                    height: size.height / 8,
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: size.width / 0.5,
-                    child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
-                  ),
+                  // Container(
+                  //   alignment: Alignment.centerLeft,
+                  //   width: size.width / 0.5,
+                  //   child: IconButton(
+                  //       icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                  // ),
                   SizedBox(
                     height: size.height / 50,
                   ),
@@ -49,6 +50,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       "Welcome",
                       style: TextStyle(
                         fontSize: 34,
+                        color: Color(0xff24249B),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -58,7 +60,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     child: Text(
                       "Create Account to Continue!",
                       style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Color(0xff24249B),
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
@@ -93,13 +95,13 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                   customButton(size),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Text(
-                        "Login",
+                        "Already have an account? Sign In",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xff646FD4),
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
@@ -158,10 +160,10 @@ class _CreateAccountState extends State<CreateAccount> {
       },
       child: Container(
           height: size.height / 14,
-          width: size.width / 1.2,
+          width: size.width / 1.6,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Colors.blue,
+            borderRadius: BorderRadius.circular(25),
+            color: Color(0xFF9BA3E8),
           ),
           alignment: Alignment.center,
           child: Text(
@@ -185,9 +187,14 @@ class _CreateAccountState extends State<CreateAccount> {
         obscureText: hintText == "password" ? true : false,
         obscuringCharacter: "*",
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(
+            icon,
+            color: Color(0xff646FD4),
+          ),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(
+            color: Color(0xff646FD4),
+          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),

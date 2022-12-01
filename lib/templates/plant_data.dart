@@ -151,6 +151,7 @@ class _PlantDataState extends State<PlantData> {
     return Scaffold(
       appBar: AppBar(
         title: Text(model.name),
+        backgroundColor: Color(0xFF9BA3EB),
       ),
       body: ListView(children: [
         Center(

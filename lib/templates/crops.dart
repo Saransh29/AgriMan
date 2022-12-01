@@ -1,8 +1,11 @@
 import 'package:agriman/models/plant_model.dart';
 import 'package:agriman/templates/plant_data.dart';
+import 'package:agriman/temputil.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
+
+import 'package:google_fonts/google_fonts.dart';
 
 class CropList extends StatefulWidget {
   const CropList({Key? key}) : super(key: key);
@@ -47,31 +50,123 @@ class _CropListState extends State<CropList>
     BuildContext context,
     int index,
   ) {
-    return GestureDetector(
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+        top: 10,
+      ),
+      child: GestureDetector(
         onTap: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PlantData(crops[index])));
         },
-        child: Card(
-          margin: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Hero(
-                  tag: crops[index],
-                  child: Image.asset(crops[index].imageStr,
-                      width: 150, height: 150)),
-              const SizedBox(
-                width: 16,
+        child: Container(
+          margin: const EdgeInsets.all(2),
+          // height: size.height * 0.15,
+          height: 110,
+          width: double.maxFinite,
+          decoration: const BoxDecoration(
+            color: white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                16.0,
               ),
-              Text(crops[index].name,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  )),
-              const Icon(Icons.navigate_next, color: Colors.black38),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10.0,
+                spreadRadius: 5.0,
+                offset: Offset(0.0, 10.0),
+              ),
             ],
           ),
-        ));
+          child: Row(
+            children: [
+              SizedBox(
+                height: double.infinity,
+                width: 110,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    bottomLeft: Radius.circular(12.0),
+                  ),
+                  child: Image.asset(
+                    crops[index].imageStr,
+                    height: 220.0,
+                    width: double.maxFinite,
+                    fit: BoxFit.cover,
+                  ),
+                  // child: Image.network(
+                  //   'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                  //   height: 220.0,
+                  //   width: double.maxFinite,
+                  //   fit: BoxFit.cover,
+                  // ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      crops[index].name,
+                      style: GoogleFonts.openSans(
+                        color: black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 23,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Container(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SizedBox(
+                    height: double.infinity,
+                    width: 50,
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: black,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    // child: Card(
+    //   margin: const EdgeInsets.all(16),
+    //   child: Row(
+    //     children: [
+    //       Hero(
+    //           tag: crops[index],
+    //           child: Image.asset(crops[index].imageStr,
+    //               width: 150, height: 150)),
+    //       const SizedBox(
+    //         width: 16,
+    //       ),
+    //       Text(crops[index].name,
+    //           style: TextStyle(
+    //             fontSize: 18,
+    //             fontWeight: FontWeight.bold,
+    //           )),
+    //       const Icon(Icons.navigate_next, color: Colors.black38),
+    //     ],
+    //   ),
+    // ),
+    // );
   }
 
   late PlantModel model;
@@ -79,13 +174,13 @@ class _CropListState extends State<CropList>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color(0xFFDBDFFD),
       appBar: AppBar(
         title: Text(
           'Crops',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Color(0xFF9BA3EB),
       ),
       body: Center(
         child: Stack(
@@ -133,7 +228,7 @@ class _CropListState extends State<CropList>
               });
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xFF9BA3EB),
       ),
     );
   }

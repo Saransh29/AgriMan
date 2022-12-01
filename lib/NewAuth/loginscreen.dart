@@ -1,5 +1,7 @@
 import 'package:agriman/home_temp.dart';
+import 'package:agriman/temputil.dart';
 import 'package:agriman/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'auth.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +20,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    // HexColor("#646FD4")
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 43, 50, 62),
+      backgroundColor: white,
       body: isLoading
           ? Center(
               child: Container(
@@ -32,64 +34,53 @@ class _LoginScreenState extends State<LoginScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: size.height / 20,
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: size.width / 0.5,
-                    child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
-                  ),
-                  SizedBox(
-                    height: size.height / 35,
-                  ),
-                  // Container(
-                  //   alignment: Alignment.topCenter,
-                  //   height: size.height / 4,
-                  //   // width: size.width / 1.1,
-                  //   child: Image.asset(
-                  //     "assets/images/img.png",
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
-                  Container(
-                    width: size.width / 1.11,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "AGRIMAN",
-                      style: TextStyle(
-                        color: primColors.primary,
-                        fontSize: 34,
-                        fontWeight: FontWeight.bold,
+                  Stack(
+                    children: [
+                      Container(
+                        height: 250,
+                        width: double.maxFinite,
+                        child: Image.network(
+                          'https://i.imgur.com/0V6h1U4.png',
+                          width: double.maxFinite,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 40,
+                          top: 170.0,
+                        ),
+                        child: Container(
+                          height: 90,
+                          width: 140,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Sign In",
+                            style: GoogleFonts.openSans(
+                              color: Color.fromARGB(255, 60, 60, 162),
+                              fontSize: 38,
+                              letterSpacing: 0.8,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Container(
+                      //   alignment: Alignment.bottomLeft,
+                      //   child: Text(
+                      //     "AGRIMAN",
+                      //     style: TextStyle(
+                      //       color: Color(0xff24249B),
+                      //       fontSize: 34,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
                   ),
-                  // Container(
-                  //   // width: size.width / 2,
-                  //   alignment: Alignment.center,
-                  //   child: Text(
-                  //     "Made with ❤ by Saransh Bibiyan",
-                  //     style: TextStyle(
-                  //       color: Colors.blue,
-                  //       fontSize: size.height / 45,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: size.width / 1.11,
-                  //   child: Text(
-                  //     "Sign In to Contiue!",
-                  //     style: TextStyle(
-                  //       color: Colors.grey[700],
-                  //       fontSize: 25,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(
-                    height: size.height / 7,
+                    height: size.height / 14,
                   ),
                   Container(
                     width: size.width,
@@ -115,9 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => CreateAccount())),
                     child: const Text(
-                      "Create Account",
+                      "Don't have an account? Sign Up",
                       style: TextStyle(
-                        color: primColors.primary,
+                        color: Color(0xff646FD4),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -126,18 +117,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: size.height / 10,
                   ),
-                  // Container(
-                  //   // width: size.width / 2,
-                  //   alignment: Alignment.center,
-                  //   child: Text(
-                  //     "Made with ❤ by Saransh Bibiyan",
-                  //     style: TextStyle(
-                  //       color: Colors.blue,
-                  //       fontSize: size.height / 45,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -173,10 +152,10 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Container(
         height: size.height / 14,
-        width: size.width / 1.2,
+        width: size.width / 1.6,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: primColors.primary,
+          borderRadius: BorderRadius.circular(25),
+          color: Color(0xFF9BA3E8),
         ),
         alignment: Alignment.center,
         child: Text(
@@ -201,9 +180,9 @@ class _LoginScreenState extends State<LoginScreen> {
         obscureText: hintText == "password" ? true : false,
         obscuringCharacter: "*",
         decoration: InputDecoration(
-          prefixIcon: Icon(icon),
+          prefixIcon: Icon(icon, color: Color(0xff646FD4)),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: TextStyle(color: Color(0xff646FD4)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),

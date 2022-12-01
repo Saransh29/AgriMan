@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       routes: {
-        '/': (context) => Authenticate(),
+        '/': (context) => welcome(),
         '/home': (context) => Home1(),
         '/weather': (context) => weather(),
         '/crops': (context) => CropList(),
