@@ -1,7 +1,8 @@
 import 'package:agriman/NewAuth/auth.dart';
+import 'package:agriman/home_temp.dart';
 import 'package:agriman/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:agriman/home_page.dart';
+import 'package:agriman/home_temp.dart';
 import 'package:agriman/templates/weather_info.dart';
 import 'package:agriman/templates/crops.dart';
 import 'package:agriman/templates/user_info_page.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light(),
       routes: {
         '/': (context) => Authenticate(),
-        '/home': (context) => Home(),
+        '/home': (context) => Home1(),
         '/weather': (context) => weather(),
         '/crops': (context) => CropList(),
         '/login': (context) => Authenticate(),

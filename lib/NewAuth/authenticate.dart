@@ -1,7 +1,9 @@
+import 'package:agriman/home_temp.dart';
+
 import 'auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:agriman/home_page.dart';
+import 'package:agriman/home_temp.dart';
 
 class Authenticate extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -9,7 +11,7 @@ class Authenticate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (_auth.currentUser != null) {
-      return Home();
+      return Home1();
     } else {
       return LoginScreen();
     }

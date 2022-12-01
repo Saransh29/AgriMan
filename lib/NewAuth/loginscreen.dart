@@ -1,3 +1,4 @@
+import 'package:agriman/home_temp.dart';
 import 'package:agriman/theme.dart';
 
 import 'auth.dart';
@@ -158,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 isLoading = false;
               });
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Home()));
+                  context, MaterialPageRoute(builder: (_) => Home1()));
             } else {
               print("Login Failed");
               setState(() {

@@ -115,7 +115,7 @@ class Option_cards extends StatelessWidget {
           Ink.image(
             image: NetworkImage(link),
             fit: BoxFit.cover,
-            height: 200,
+            height: 160,
             child: InkWell(
               onTap: () {
                 if (route.isNotEmpty) {
