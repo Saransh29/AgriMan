@@ -508,6 +508,20 @@ class _pricesState extends State<prices> {
                   //     ),
                   //   ],
                   // ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      'Prices in ' '₹/100kg',
+                      style: GoogleFonts.openSans(
+                        color: black,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
