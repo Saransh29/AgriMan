@@ -11,6 +11,9 @@ import 'package:agriman/auth/personal.dart';
 import 'package:agriman/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'prices/azadpur.dart';
+import 'prices/prices.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -33,11 +36,13 @@ class MyApp extends StatelessWidget {
         '/': (context) => welcome(),
         '/home': (context) => Home1(),
         '/weather': (context) => weather(),
+        '/prices': (context) => prices(),
         '/crops': (context) => CropList(),
         '/login': (context) => Authenticate(),
         '/register': (context) => CreateAccount(),
         '/profile': (context) => Userprofile(),
-        '/user_info': (context) => UserInfo()
+        '/user_info': (context) => UserInfo(),
+        '/azadpur': (context) => Azadpur(),
       },
     );
   }

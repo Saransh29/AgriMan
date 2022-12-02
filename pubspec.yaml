@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^3.0.1
   firebase_database: ^9.1.7
   styled_widget: ^0.4.1
+  syncfusion_flutter_datagrid: ^20.3.59
 
 dev_dependencies:
   flutter_test:
