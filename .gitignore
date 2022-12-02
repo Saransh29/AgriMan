@@ -33,6 +33,7 @@ tasks_mohit.txt
 .pub/
 /build/
 lib/utils/
+lib/weather/api/
 # Web related
 # Symbolication related
 app.*.symbols

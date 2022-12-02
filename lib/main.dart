@@ -2,6 +2,7 @@ import 'package:agriman/NewAuth/auth.dart';
 import 'package:agriman/home_temp.dart';
 import 'package:agriman/prices/sonipat.dart';
 import 'package:agriman/theme.dart';
+import 'package:agriman/weather/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_temp.dart';
 import 'package:agriman/templates/weather_info.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => welcome(),
         '/home': (context) => Home1(),
-        '/weather': (context) => weather(),
+        '/weather': (context) => HomeScreen(),
         '/prices': (context) => prices(),
         '/crops': (context) => CropList(),
         '/login': (context) => Authenticate(),
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         '/rohtak': (context) => Rohtak(),
         '/najafgarh': (context) => Najafgarh(),
         '/panipat': (context) => Panipat(),
+        
       },
     );
   }

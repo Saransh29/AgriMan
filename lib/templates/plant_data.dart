@@ -91,61 +91,6 @@ class _PlantDataState extends State<PlantData> {
     databaseRef.child("User").update({"value": val});
   }
 
-  // Future<void> checker() async {
-  //   DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
-
-  //   await databaseRef.update({
-  //     "moisture": 15,
-  //   });
-  // }
-
-  // Future<void> togglewater() async {
-  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/";
-  //   var status = waterPumpStatus;
-
-  //   final _ = await http.post(
-  //     Uri.parse(url),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, bool>{'Motor_Value': !status}),
-  //   );
-  // }
-
-// added firebase realtime database
-  // Future<void> attachStatus(String device) async {
-  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json";
-  //   final response = await http.get(Uri.parse(url));
-  //   print(response.body);
-  //   setState(() {
-  //     waterPumpStatus = response.body == "true" ? true : false;
-  //   });
-  // }
-
-// device = Motor_value
-  // Future<void> toggleStatus(String device) async {
-  //   var url = globalServerLink;
-  //   var status = waterPumpStatus;
-
-  //   final _ = await http.post(
-  //     Uri.parse(url),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, bool>{'Motor_Value': !status}),
-  //   );
-  // }
-
-  // Future<void> helper() async {
-  //   var url = "https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json";
-  //   final response = await http.get(Uri.parse(url));
-  // }
-
-  // Future<http.Response> datahelper() {
-  //   return http.get(Uri.parse(
-  //       'https://agri-37771-default-rtdb.firebaseio.com/Motor_value.json'));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,68 +114,47 @@ class _PlantDataState extends State<PlantData> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SleekCircularSlider(
-                        appearance: CircularSliderAppearance(
-                            customWidths: CustomSliderWidths(
-                              trackWidth: 3,
-                              progressBarWidth: 5,
-                              // shadowWidth: 10,
-                            ),
-                            customColors: CustomSliderColors(
-                                trackColor: HexColor('#DBDFFD'),
-                                progressBarColor: HexColor('#646FD4'),
-                                shadowColor: HexColor('#646FD4'),
-                                shadowMaxOpacity: 1, //);
-                                shadowStep: 5),
-                            infoProperties: InfoProperties(
-                                bottomLabelStyle: TextStyle(
-                                    color: HexColor('#242F9B'),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600),
-                                bottomLabelText: 'Temp.',
-                                mainLabelStyle: TextStyle(
-                                    color: HexColor('#242F9B'),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                                modifier: (double value) {
-                                  return '${double.parse(temp).toStringAsFixed(2)}˚C';
-                                }),
-                            startAngle: 90,
-                            angleRange: 360,
-                            size: 128,
-                            animationEnabled: true),
                         min: 0,
                         max: 100,
-                        initialValue: double.parse(temp),
+                        initialValue: double.parse(temp).toDouble(),
+                        appearance: CircularSliderAppearance(
+                          customWidths: CustomSliderWidths(
+                            handlerSize: 0,
+                            trackWidth: 12,
+                            progressBarWidth: 12,
+                            // shadowWidth: 10,
+                          ),
+                          customColors: CustomSliderColors(
+                            hideShadow: true,
+                            trackColor: Color(0xff408ADE).withAlpha(100),
+                            progressBarColors: [
+                              Color(0xff408ADE),
+                              Color(0xff5286CD),
+                            ],
+                            // shadowColor: HexColor('#646FD4'),
+                            // shadowMaxOpacity: 1, //);
+                            // shadowStep: 5
+                          ),
+                          infoProperties: InfoProperties(
+                            bottomLabelStyle: TextStyle(
+                                color: HexColor('#242F9B'),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
+                            bottomLabelText: 'Temp.',
+                            mainLabelStyle: TextStyle(
+                                color: HexColor('#242F9B'),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                            modifier: (double value) {
+                              return '${double.parse(temp).toStringAsFixed(2)}˚C';
+                            },
+                          ),
+                          startAngle: 120,
+                          angleRange: 360,
+                          size: 128,
+                          animationEnabled: true,
+                        ),
                       ),
-                      // FlutterSwitch(
-                      //   activeIcon: Icon(Icons.ac_unit),
-                      //   inactiveIcon: Icon(Icons.wb_sunny),
-                      //   width: 125.0,
-                      //   height: 55.0,
-                      //   valueFontSize: 25.0,
-                      //   toggleSize: 45.0,
-                      //   value: fanMotorStatus,
-                      //   borderRadius: 30.0,
-                      //   padding: 8.0,
-                      //   showOnOff: true,
-                      //   onToggle: (val) {
-                      //     setState(() {
-                      //       fanMotorStatus = val;
-                      //       print(fanMotorStatus);
-                      //       toggleStatus('Fan');
-                      //     });
-                      //   },
-                      // ),
-                      //adding new toggle button
-                      // Toggle(
-                      //   value: waterPumpStatus,
-                      //   onToggle: (val) {
-                      //     setState(() {
-                      //       waterPumpStatus = val;
-                      //       updateMotorValue(val);
-                      //     });
-                      //   },
-                      // ),
                       FlutterSwitch(
                         activeIcon: Icon(Icons.water),
                         inactiveIcon: Icon(Icons.settings_power_rounded),
