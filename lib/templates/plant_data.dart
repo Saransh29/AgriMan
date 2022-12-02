@@ -149,6 +149,7 @@ class _PlantDataState extends State<PlantData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 239, 239, 242),
       appBar: AppBar(
         title: Text(model.name),
         backgroundColor: Color(0xFF9BA3EB),
@@ -170,27 +171,28 @@ class _PlantDataState extends State<PlantData> {
                       SleekCircularSlider(
                         appearance: CircularSliderAppearance(
                             customWidths: CustomSliderWidths(
-                                trackWidth: 0.6,
-                                progressBarWidth: 10,
-                                shadowWidth: 10),
+                              trackWidth: 3,
+                              progressBarWidth: 5,
+                              // shadowWidth: 10,
+                            ),
                             customColors: CustomSliderColors(
-                                trackColor: HexColor('#ef6c00'),
-                                progressBarColor: HexColor('#ffb74d'),
-                                shadowColor: HexColor('#ffb74d'),
-                                shadowMaxOpacity: 0.5, //);
-                                shadowStep: 20),
+                                trackColor: HexColor('#DBDFFD'),
+                                progressBarColor: HexColor('#646FD4'),
+                                shadowColor: HexColor('#646FD4'),
+                                shadowMaxOpacity: 1, //);
+                                shadowStep: 5),
                             infoProperties: InfoProperties(
                                 bottomLabelStyle: TextStyle(
-                                    color: HexColor('#6DA100'),
+                                    color: HexColor('#242F9B'),
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                                 bottomLabelText: 'Temp.',
                                 mainLabelStyle: TextStyle(
-                                    color: HexColor('#54826D'),
+                                    color: HexColor('#242F9B'),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                                 modifier: (double value) {
-                                  return '${double.parse(temp).toStringAsFixed(2)} ˚C';
+                                  return '${double.parse(temp).toStringAsFixed(2)}˚C';
                                 }),
                             startAngle: 90,
                             angleRange: 360,
@@ -258,24 +260,25 @@ class _PlantDataState extends State<PlantData> {
                       SleekCircularSlider(
                         appearance: CircularSliderAppearance(
                             customWidths: CustomSliderWidths(
-                                trackWidth: 0.6,
-                                progressBarWidth: 10,
-                                shadowWidth: 10),
+                              trackWidth: 3,
+                              progressBarWidth: 5,
+                              // shadowWidth: 10,
+                            ),
                             customColors: CustomSliderColors(
-                                trackColor: HexColor('#00cc00'),
-                                progressBarColor: HexColor('#00ff99'),
-                                shadowColor: HexColor('#00b359'),
-                                shadowMaxOpacity: 0.5, //);
-                                shadowStep: 20),
+                                trackColor: HexColor('#DBDFFD'),
+                                progressBarColor: HexColor('#646FD4'),
+                                shadowColor: HexColor('#646FD4'),
+                                shadowMaxOpacity: 1, //);
+                                shadowStep: 5),
                             infoProperties: InfoProperties(
                                 bottomLabelStyle: TextStyle(
-                                    color: HexColor('#6DA100'),
-                                    fontSize: 20,
+                                    color: HexColor('#242F9B'),
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w600),
                                 bottomLabelText: 'Moisture',
                                 mainLabelStyle: TextStyle(
-                                    color: HexColor('#54826D'),
-                                    fontSize: 30.0,
+                                    color: HexColor('#242F9B'),
+                                    fontSize: 20.0,
                                     fontWeight: FontWeight.w600),
                                 modifier: (double value) {
                                   return '${double.parse(moisture).toStringAsFixed(2)} %';
@@ -291,23 +294,24 @@ class _PlantDataState extends State<PlantData> {
                       SleekCircularSlider(
                         appearance: CircularSliderAppearance(
                             customWidths: CustomSliderWidths(
-                                trackWidth: 0.6,
-                                progressBarWidth: 10,
-                                shadowWidth: 10),
+                              trackWidth: 0.6,
+                              progressBarWidth: 10,
+                              // shadowWidth: 10,
+                            ),
                             customColors: CustomSliderColors(
                                 trackColor: HexColor('#0277bd'),
                                 progressBarColor: HexColor('#4FC3F7'),
                                 shadowColor: HexColor('#B2EBF2'),
-                                shadowMaxOpacity: 0.5, //);
-                                shadowStep: 20),
+                                shadowMaxOpacity: 1, //);
+                                shadowStep: 5),
                             infoProperties: InfoProperties(
                                 bottomLabelStyle: TextStyle(
-                                    color: HexColor('#6DA100'),
+                                    color: HexColor('#0277bd'),
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                                 bottomLabelText: 'Humidity',
                                 mainLabelStyle: TextStyle(
-                                    color: HexColor('#54826D'),
+                                    color: HexColor('#0277bd'),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                                 modifier: (double value) {
