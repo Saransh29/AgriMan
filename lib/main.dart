@@ -1,5 +1,6 @@
 import 'package:agriman/NewAuth/auth.dart';
 import 'package:agriman/home_temp.dart';
+import 'package:agriman/prices/sonipat.dart';
 import 'package:agriman/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_temp.dart';
@@ -12,7 +13,10 @@ import 'package:agriman/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'prices/azadpur.dart';
+import 'prices/najafgarh.dart';
+import 'prices/panipat.dart';
 import 'prices/prices.dart';
+import 'prices/rohtak.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +47,10 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => Userprofile(),
         '/user_info': (context) => UserInfo(),
         '/azadpur': (context) => Azadpur(),
+        '/sonipat': (context) => Sonipat(),
+        '/rohtak': (context) => Rohtak(),
+        '/najafgarh': (context) => Najafgarh(),
+        '/panipat': (context) => Panipat(),
       },
     );
   }

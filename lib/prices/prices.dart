@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:agriman/home_temp.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -143,7 +144,7 @@ class _pricesState extends State<prices> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/azadpur');
+                      Navigator.pushNamed(context, '/sonipat');
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
@@ -201,33 +202,6 @@ class _pricesState extends State<prices> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                // const Spacer(),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment:
-                                //       MainAxisAlignment.spaceBetween,
-                                //   children: [
-                                //     Text(
-                                //       "Analyse Crop Data",
-                                //       style: GoogleFonts.openSans(
-                                //         color: black,
-                                //         fontSize: 15,
-                                //         fontWeight: FontWeight.w400,
-                                //       ),
-                                //     ),
-
-                                //     // Text(
-                                //     //   "16 Video",
-                                //     //   style: GoogleFonts.openSans(
-                                //     //     color: black,
-                                //     //     fontSize: 15,
-                                //     //     fontWeight: FontWeight.w500,
-                                //     //   ),
-                                //     // ),
-                                //   ],
-                                // ),
                               ],
                             ),
                           ),
@@ -255,7 +229,7 @@ class _pricesState extends State<prices> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/azadpur');
+                      Navigator.pushNamed(context, '/najafgarh');
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
@@ -313,33 +287,6 @@ class _pricesState extends State<prices> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                // const Spacer(),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment:
-                                //       MainAxisAlignment.spaceBetween,
-                                //   children: [
-                                //     Text(
-                                //       "Analyse Crop Data",
-                                //       style: GoogleFonts.openSans(
-                                //         color: black,
-                                //         fontSize: 15,
-                                //         fontWeight: FontWeight.w400,
-                                //       ),
-                                //     ),
-
-                                //     // Text(
-                                //     //   "16 Video",
-                                //     //   style: GoogleFonts.openSans(
-                                //     //     color: black,
-                                //     //     fontSize: 15,
-                                //     //     fontWeight: FontWeight.w500,
-                                //     //   ),
-                                //     // ),
-                                //   ],
-                                // ),
                               ],
                             ),
                           ),
@@ -367,7 +314,7 @@ class _pricesState extends State<prices> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/azadpur');
+                      Navigator.pushNamed(context, '/panipat');
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
@@ -425,33 +372,6 @@ class _pricesState extends State<prices> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                // const Spacer(),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment:
-                                //       MainAxisAlignment.spaceBetween,
-                                //   children: [
-                                //     Text(
-                                //       "Analyse Crop Data",
-                                //       style: GoogleFonts.openSans(
-                                //         color: black,
-                                //         fontSize: 15,
-                                //         fontWeight: FontWeight.w400,
-                                //       ),
-                                //     ),
-
-                                //     // Text(
-                                //     //   "16 Video",
-                                //     //   style: GoogleFonts.openSans(
-                                //     //     color: black,
-                                //     //     fontSize: 15,
-                                //     //     fontWeight: FontWeight.w500,
-                                //     //   ),
-                                //     // ),
-                                //   ],
-                                // ),
                               ],
                             ),
                           ),
@@ -479,7 +399,7 @@ class _pricesState extends State<prices> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/azadpur');
+                      Navigator.pushNamed(context, '/rohtak');
                     },
                     child: Container(
                       margin: const EdgeInsets.all(2),
@@ -537,33 +457,6 @@ class _pricesState extends State<prices> {
                                     fontSize: 20,
                                   ),
                                 ),
-                                // const Spacer(),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment:
-                                //       MainAxisAlignment.spaceBetween,
-                                //   children: [
-                                //     Text(
-                                //       "Analyse Crop Data",
-                                //       style: GoogleFonts.openSans(
-                                //         color: black,
-                                //         fontSize: 15,
-                                //         fontWeight: FontWeight.w400,
-                                //       ),
-                                //     ),
-
-                                //     // Text(
-                                //     //   "16 Video",
-                                //     //   style: GoogleFonts.openSans(
-                                //     //     color: black,
-                                //     //     fontSize: 15,
-                                //     //     fontWeight: FontWeight.w500,
-                                //     //   ),
-                                //     // ),
-                                //   ],
-                                // ),
                               ],
                             ),
                           ),
@@ -589,32 +482,32 @@ class _pricesState extends State<prices> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 60,
-                        width: 160,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: HexColor('#646FD4'),
-                            shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(64.0),
-                            ),
-                          ),
-                          onPressed: () => logOut(context),
-                          child: Text(
-                            "Logout",
-                            style: GoogleFonts.openSans(
-                              color: white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SizedBox(
+                  //       height: 60,
+                  //       width: 160,
+                  //       child: ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //           backgroundColor: HexColor('#646FD4'),
+                  //           shape: ContinuousRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(64.0),
+                  //           ),
+                  //         ),
+                  //         onPressed: () => Home1(),
+                  //         child: Text(
+                  //           "Back",
+                  //           style: GoogleFonts.openSans(
+                  //             color: white,
+                  //             fontSize: 15,
+                  //             fontWeight: FontWeight.w500,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
