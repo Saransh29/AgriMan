@@ -335,7 +335,7 @@ class _Home1State extends State<Home1> {
                     ),
                   ),
                   const SizedBox(
-                    height: 16.0,
+                    height: 14.0,
                   ),
                   InkWell(
                     onTap: () {
@@ -433,7 +433,7 @@ class _Home1State extends State<Home1> {
                     ),
                   ),
                   const SizedBox(
-                    height: 16.0,
+                    height: 14.0,
                   ),
                   InkWell(
                     onTap: () {
@@ -532,6 +532,9 @@ class _Home1State extends State<Home1> {
                         ],
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 14.0,
                   ),
                   InkWell(
                     onTap: () {
