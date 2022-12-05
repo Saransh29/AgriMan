@@ -8,11 +8,8 @@ import 'package:agriman/home_temp.dart';
 import 'package:agriman/templates/weather_info.dart';
 import 'package:agriman/templates/crops.dart';
 import 'package:agriman/templates/user_info_page.dart';
-
-import 'package:agriman/auth/personal.dart';
 import 'package:agriman/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'prices/azadpur.dart';
 import 'prices/najafgarh.dart';
 import 'prices/panipat.dart';
@@ -45,14 +42,12 @@ class MyApp extends StatelessWidget {
         '/crops': (context) => CropList(),
         '/login': (context) => Authenticate(),
         '/register': (context) => CreateAccount(),
-        '/profile': (context) => Userprofile(),
         '/user_info': (context) => UserInfo(),
         '/azadpur': (context) => Azadpur(),
         '/sonipat': (context) => Sonipat(),
         '/rohtak': (context) => Rohtak(),
         '/najafgarh': (context) => Najafgarh(),
         '/panipat': (context) => Panipat(),
-        
       },
     );
   }
