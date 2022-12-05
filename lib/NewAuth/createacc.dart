@@ -1,3 +1,5 @@
+import 'package:agriman/home_temp.dart';
+
 import '../temputil.dart';
 import 'auth.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +147,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 isLoading = false;
               });
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Home()));
+                  context, MaterialPageRoute(builder: (_) => Home1()));
               print("Account Created Sucessfull");
             } else {
               print("Login Failed");

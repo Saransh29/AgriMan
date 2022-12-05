@@ -1,7 +1,7 @@
 import 'package:agriman/NewAuth/authenticate.dart';
-import 'package:agriman/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class welcome extends StatelessWidget {
   @override
@@ -12,14 +12,23 @@ class welcome extends StatelessWidget {
           SizedBox(
             height: 110,
           ),
-          Container(
-            alignment: Alignment.center,
-            child: Image.network(
-              'https://i.imgur.com/fkTPC49.png',
-              width: double.maxFinite,
-              fit: BoxFit.cover,
-            ),
-          ),
+          kIsWeb
+              ? Container(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                    'https://i.imgur.com/fkTPC49.png',
+                    height: 400,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : Container(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                    'https://i.imgur.com/fkTPC49.png',
+                    width: double.maxFinite,
+                    fit: BoxFit.cover,
+                  ),
+                ),
           SizedBox(
             height: 10,
           ),
@@ -90,29 +99,6 @@ class welcome extends StatelessWidget {
                     textScaleFactor: 0.5,
                   ),
                 ),
-                // Container(
-                //   alignment: Alignment.topLeft,
-                //   width: 200,
-                //   decoration: const BoxDecoration(
-                //     borderRadius: BorderRadius.all(Radius.circular(10)),
-                //   ),
-                //   child: Expanded(
-                //     child: Text(
-                //       'Get Started',
-                //       style: GoogleFonts.openSans(
-                //         color: HexColor('#9BA3E8'),
-                //         fontSize: 22,
-                //         fontWeight: FontWeight.w600,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Container(
-                //   child: Icon(
-                //     Icons.arrow_forward,
-                //     color: HexColor('#9BA3E8'),
-                //   ),
-                // ),
               ],
             ),
           ),

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+import '../temputil.dart';
+
 class Azadpur extends StatefulWidget {
   // Azadpur({Key? key, required this.title}) : super(key: key);
 
@@ -26,18 +28,39 @@ class _AzadpurState extends State<Azadpur> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+        child: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(
+              36.0,
+            ),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10.0,
+              spreadRadius: 5.0,
+              offset: Offset(0.0, 10.0),
+            ),
+          ],
+        ),
         child: Scaffold(
-      body: FutureBuilder(
-        future: getProductDataSource(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData
-              ? SfDataGrid(source: snapshot.data, columns: getColumns())
-              : Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 3,
-                  ),
-                );
-        },
+          body: FutureBuilder(
+            future: getProductDataSource(),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              return snapshot.hasData
+                  ? SfDataGrid(source: snapshot.data, columns: getColumns())
+                  : Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                      ),
+                    );
+            },
+          ),
+        ),
       ),
     ));
   }
@@ -205,10 +228,8 @@ class Product {
       required this.Minimum_Price});
 
   final String? Commodity;
-
   final String? Variety;
   final String? Average_Price;
   final String? Maximum_Price;
-
   final String? Minimum_Price;
 }

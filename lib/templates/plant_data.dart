@@ -39,6 +39,7 @@ class _PlantDataState extends State<PlantData> {
     waterstatus();
     Timer _ = Timer.periodic(const Duration(seconds: 5), (timer) {
       readDataFromFirebase();
+      waterstatus();
     });
   }
 
