@@ -171,23 +171,29 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget field(
-      Size size, String hintText, IconData icon, TextEditingController cont) {
-    return Container(
-      height: size.height / 14,
-      width: size.width / 1.1,
-      child: TextField(
-        controller: cont,
-        obscureText: hintText == "password" ? true : false,
-        obscuringCharacter: "*",
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: Color(0xff646FD4)),
-          hintText: hintText,
-          hintStyle: TextStyle(color: Color(0xff646FD4)),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
+  Size size,
+  String hintText,
+  IconData icon,
+  TextEditingController cont,
+) {
+
+  return Container(
+    height: size.height / 14,
+    width: size.width / 1.1,
+    child: TextField(
+      controller: cont,
+      obscureText: hintText == "password" ? true : false,
+      obscuringCharacter: "*",
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Color(0xff646FD4)),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Color(0xff646FD4)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        )
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
