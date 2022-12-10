@@ -1,11 +1,15 @@
+import 'package:agriman/NewAuth/auth.dart';
 import 'package:agriman/models/plant_model.dart';
 import 'package:agriman/templates/plant_data.dart';
 import 'package:agriman/temputil.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
-
+import 'package:agriman/home_temp.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../utils/constants.dart';
 
 class CropList extends StatefulWidget {
   const CropList({Key? key}) : super(key: key);
@@ -20,8 +24,10 @@ class _CropListState extends State<CropList>
   var str;
   final cropname = TextEditingController();
   List<String> cropNames = ['Onion', 'EggPlant'];
-
   List<PlantModel> crops = [];
+
+  //access a variable from another file
+
 
   @override
   void initState() {
@@ -146,27 +152,6 @@ class _CropListState extends State<CropList>
         ),
       ),
     );
-    // child: Card(
-    //   margin: const EdgeInsets.all(16),
-    //   child: Row(
-    //     children: [
-    //       Hero(
-    //           tag: crops[index],
-    //           child: Image.asset(crops[index].imageStr,
-    //               width: 150, height: 150)),
-    //       const SizedBox(
-    //         width: 16,
-    //       ),
-    //       Text(crops[index].name,
-    //           style: TextStyle(
-    //             fontSize: 18,
-    //             fontWeight: FontWeight.bold,
-    //           )),
-    //       const Icon(Icons.navigate_next, color: Colors.black38),
-    //     ],
-    //   ),
-    // ),
-    // );
   }
 
   late PlantModel model;
@@ -213,6 +198,20 @@ class _CropListState extends State<CropList>
                           str = cropname.text;
                           setState(() {
                             cropAdder(str, false);
+                          });
+                          var url1 = globalServerLink;
+                          DatabaseReference databaseRef1 =
+                              FirebaseDatabase.instance.refFromURL(url1);
+                          databaseRef1
+                              .child("Users")
+                              .child(name1)
+                              .child("crops")
+                              .child(str)
+                              .set({
+                            "humidity": 38,
+                            "moisture": 41.1,
+                            "temp": 22.1,
+                            "value": false
                           });
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('$str Added'),

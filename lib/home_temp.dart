@@ -11,6 +11,10 @@ import 'templates/weather_model.dart';
 import 'utils/constants.dart';
 import 'NewAuth/methods.dart';
 import 'temputil.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+
+String name1 = "User";
 
 Future<WeatherResponse> getWeather(String city) async {
   // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -41,6 +45,15 @@ class Home1 extends StatefulWidget {
 class _Home1State extends State<Home1> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Map<String, dynamic>? userMap;
+
+  double latitude = 0.0;
+  double longitude = 0.0;
+
+  String city = "Delhi";
+  bool addbool = false;
+
+  // String name1 = "User";
+
   void getname() {
     FirebaseFirestore.instance
         .collection('users')
@@ -49,6 +62,7 @@ class _Home1State extends State<Home1> {
         .then((value) {
       setState(() {
         userMap = value.data();
+        name1 = userMap!['name'];
       });
       print("__________________");
       print(userMap!['name']);
@@ -56,11 +70,58 @@ class _Home1State extends State<Home1> {
     });
   }
 
+  String namegetter() {
+    return name1;
+  }
+
+  getAddress(lat, long) async {
+    try {
+      List<Placemark> placemark = await placemarkFromCoordinates(lat, long);
+      print(placemark);
+      Placemark place = placemark[0];
+      setState(() {
+        city = place.locality!;
+        addbool = true;
+      });
+      print(place.locality!);
+    } catch (e) {
+      setState(() {
+        addbool = false;
+      });
+      print('Address was not retrieved, please fill out manually');
+    }
+  }
+
+  getLocation() async {
+    LocationPermission locationPermission;
+    locationPermission = await Geolocator.checkPermission();
+
+    if (locationPermission == LocationPermission.deniedForever) {
+      return Future.error("Location permission are denied forever");
+    } else if (locationPermission == LocationPermission.denied) {
+      locationPermission = await Geolocator.requestPermission();
+      if (locationPermission == LocationPermission.denied) {
+        return Future.error("Location permission is denied");
+      }
+    }
+    return await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high)
+        .then((value) {
+      latitude = value.latitude;
+      longitude = value.longitude;
+      print(latitude);
+      print(longitude);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     getname();
-    }
+    getLocation();
+    getAddress(latitude, longitude);
+  }
+
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -210,12 +271,12 @@ class _Home1State extends State<Home1> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 13.0,
+                                  height: 7.0,
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      "Haryana",
+                                      city,
                                       style: GoogleFonts.openSans(
                                         color: black,
                                         fontSize: 18,
@@ -701,6 +762,8 @@ class _Home1State extends State<Home1> {
                       ),
                     ],
                   ),
+                  // ElevatedButton(
+                  //     onPressed: getLocation, child: Text("Get Location")),
                 ],
               ),
             ),

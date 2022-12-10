@@ -31,6 +31,7 @@ class _PlantDataState extends State<PlantData> {
   String moisture = "10";
   bool fanMotorStatus = false;
   bool waterPumpStatus = false;
+  int crops = 2;
 
   @override
   void initState() {
@@ -90,6 +91,23 @@ class _PlantDataState extends State<PlantData> {
     var url = globalServerLink;
     DatabaseReference databaseRef = FirebaseDatabase.instance.refFromURL(url);
     databaseRef.child("User").update({"value": val});
+  }
+
+  void addchilddata(String name) {
+    var url1 = globalServerLink;
+    DatabaseReference databaseRef1 = FirebaseDatabase.instance.refFromURL(url1);
+    databaseRef1
+        .child("Users")
+        .child(name)
+        .child("crops")
+        .child("onion")
+        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
+    databaseRef1
+        .child("Users")
+        .child(name)
+        .child("crops")
+        .child("eggplant")
+        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
   }
 
   @override
@@ -257,7 +275,11 @@ class _PlantDataState extends State<PlantData> {
                   //     child:
                 ],
               ),
-              Container()
+              ElevatedButton(
+                  onPressed: (() {
+                    addchilddata("saransh");
+                  }),
+                  child: Text("add data"))
             ],
           ),
         ),

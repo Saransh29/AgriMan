@@ -1,6 +1,8 @@
 import 'package:agriman/home_temp.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import '../temputil.dart';
+import '../utils/constants.dart';
 import 'auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
@@ -16,6 +18,8 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool isLoading = false;
+
+  String nami = "sk";
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +41,6 @@ class _CreateAccountState extends State<CreateAccount> {
                   SizedBox(
                     height: size.height / 8,
                   ),
-                  // Container(
-                  //   alignment: Alignment.centerLeft,
-                  //   width: size.width / 0.5,
-                  //   child: IconButton(
-                  //       icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
-                  // ),
                   SizedBox(
                     height: size.height / 50,
                   ),
@@ -145,7 +143,34 @@ class _CreateAccountState extends State<CreateAccount> {
             if (user != null) {
               setState(() {
                 isLoading = false;
+                nami = _name.text;
               });
+              var url1 = globalServerLink;
+              DatabaseReference databaseRef1 =
+                  FirebaseDatabase.instance.refFromURL(url1);
+              databaseRef1
+                  .child("Users")
+                  .child(nami)
+                  .child("crops")
+                  .child("onion")
+                  .set({
+                "humidity": 38,
+                "moisture": 41.1,
+                "temp": 22.1,
+                "value": false
+              });
+              databaseRef1
+                  .child("Users")
+                  .child(nami)
+                  .child("crops")
+                  .child("eggplant")
+                  .set({
+                "humidity": 38,
+                "moisture": 41.1,
+                "temp": 22.1,
+                "value": false
+              });
+
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => Home1()));
               print("Account Created Sucessfull");
