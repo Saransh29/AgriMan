@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         '/crops': (context) => CropList(),
         '/login': (context) => Authenticate(),
         '/register': (context) => CreateAccount(),
-        '/user_info': (context) => UserInfo(),
+        '/database': (context) => Database(),
         '/azadpur': (context) => Azadpur(),
         '/sonipat': (context) => Sonipat(),
         '/rohtak': (context) => Rohtak(),

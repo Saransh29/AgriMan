@@ -520,107 +520,107 @@ class _Home1State extends State<Home1> {
                       ),
                     ),
                   ),
-                  // const SizedBox(
-                  //   height: 14.0,
-                  // ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     Navigator.pushNamed(context, '/user_info');
-                  //   },
-                  //   child: Container(
-                  //     margin: const EdgeInsets.all(2),
-                  //     height: 110,
-                  //     decoration: const BoxDecoration(
-                  //       color: white,
-                  //       borderRadius: BorderRadius.all(
-                  //         Radius.circular(
-                  //           16.0,
-                  //         ),
-                  //       ),
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //           color: Colors.black12,
-                  //           blurRadius: 10.0,
-                  //           spreadRadius: 5.0,
-                  //           offset: Offset(0.0, 10.0),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //     child: Row(
-                  //       children: [
-                  //         SizedBox(
-                  //           height: double.infinity,
-                  //           width: 110,
-                  //           child: ClipRRect(
-                  //             borderRadius: const BorderRadius.only(
-                  //               topLeft: Radius.circular(12.0),
-                  //               bottomLeft: Radius.circular(12.0),
-                  //             ),
-                  //             child: Image.network(
-                  //               'https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                  //               height: 220.0,
-                  //               width: double.maxFinite,
-                  //               fit: BoxFit.cover,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         const SizedBox(
-                  //           width: 10,
-                  //         ),
-                  //         Padding(
-                  //           padding: const EdgeInsets.symmetric(
-                  //               vertical: 30, horizontal: 2),
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               Text(
-                  //                 'Greenhouse Account',
-                  //                 style: GoogleFonts.openSans(
-                  //                   color: black,
-                  //                   fontWeight: FontWeight.w700,
-                  //                   fontSize: 17,
-                  //                 ),
-                  //               ),
-                  //               const Spacer(),
-                  //               Row(
-                  //                 mainAxisAlignment:
-                  //                     MainAxisAlignment.spaceBetween,
-                  //                 children: [
-                  //                   Text(
-                  //                     "See your account details",
-                  //                     style: GoogleFonts.openSans(
-                  //                       color: black,
-                  //                       fontSize: 12,
-                  //                       fontWeight: FontWeight.w500,
-                  //                     ),
-                  //                   ),
-                  //                 ],
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //         Spacer(),
-                  //         Container(
-                  //           alignment: Alignment.bottomRight,
-                  //           child: Padding(
-                  //             padding: const EdgeInsets.only(
-                  //               top: 10.0,
-                  //               right: 10.0,
-                  //               bottom: 10.0,
-                  //             ),
-                  //             child: SizedBox(
-                  //               height: double.infinity,
-                  //               child: const Icon(
-                  //                 Icons.arrow_forward_ios,
-                  //                 color: black,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                  const SizedBox(
+                    height: 14.0,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/database');
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(2),
+                      height: 110,
+                      decoration: const BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            16.0,
+                          ),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            spreadRadius: 5.0,
+                            offset: Offset(0.0, 10.0),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            width: 110,
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(12.0),
+                                bottomLeft: Radius.circular(12.0),
+                              ),
+                              child: Image.network(
+                                'https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                                height: 220.0,
+                                width: double.maxFinite,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 30, horizontal: 2),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Crop Database',
+                                  style: GoogleFonts.openSans(
+                                    color: black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Search info about crops",
+                                      style: GoogleFonts.openSans(
+                                        color: black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 10.0,
+                                right: 10.0,
+                                bottom: 10.0,
+                              ),
+                              child: SizedBox(
+                                height: double.infinity,
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 14.0,
                   ),
