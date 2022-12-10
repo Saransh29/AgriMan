@@ -271,15 +271,9 @@ class _PlantDataState extends State<PlantData> {
                     ],
                   ),
                   SizedBox(height: 28),
-                  // Center(
-                  //     child:
+                 
                 ],
               ),
-              ElevatedButton(
-                  onPressed: (() {
-                    addchilddata("saransh");
-                  }),
-                  child: Text("add data"))
             ],
           ),
         ),

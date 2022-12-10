@@ -65,18 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-
-                      // Container(
-                      //   alignment: Alignment.bottomLeft,
-                      //   child: Text(
-                      //     "AGRIMAN",
-                      //     style: TextStyle(
-                      //       color: Color(0xff24249B),
-                      //       fontSize: 34,
-                      //       fontWeight: FontWeight.bold,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                   SizedBox(

@@ -42,7 +42,7 @@ class Database extends StatefulWidget {
 class _DatabaseState extends State<Database> {
   final TextEditingController _search = TextEditingController();
   bool found = false;
-  bool beforesearch = false;
+  bool beforesearch = true;
 
   String cropname = "";
 
@@ -67,6 +67,7 @@ class _DatabaseState extends State<Database> {
       if (response.body.contains(_search.text)) {
         found = true;
         cropname = _search.text;
+        beforesearch = false;
       } else {
         found = false;
       }
@@ -79,7 +80,7 @@ class _DatabaseState extends State<Database> {
     Crop crop1 = Crop.fromJson(jsonDecode(response.body));
     print(crop1.costOfFarming);
     setState(() {
-      beforesearch = true;
+      beforesearch = false;
 
       costOfFarming1 = crop1.costOfFarming;
       fertiliser1 = crop1.fertiliser;
@@ -107,19 +108,47 @@ class _DatabaseState extends State<Database> {
                 height: 60,
               ),
               getSearchBarUI(),
-              found
-                  ? Cropcard()
-                  : Container(
+              beforesearch
+                  ? Container(
                       height: size.height / 10,
                       width: size.width / 1.1,
                       child: Card(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("Not found"),
+                            Text(
+                              "Search for a crop",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
+                    )
+                  : found
+                      ? Cropcard()
+                      : Container(
+                          height: size.height / 10,
+                          width: size.width / 1.1,
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Crop not found",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
             ],
           ),
         ));
@@ -168,7 +197,7 @@ class _DatabaseState extends State<Database> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    'Crop :$cropname',
+                                    'Crop : $cropname',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 19,
@@ -178,7 +207,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Cost of Farming :$costOfFarming1',
+                                    'Cost of Farming : $costOfFarming1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -188,7 +217,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Fertiliser :$fertiliser1',
+                                    'Fertiliser : $fertiliser1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -198,7 +227,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Optimal Temprature :$optimalTemprature1',
+                                    'Optimal Temprature : $optimalTemprature1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -208,7 +237,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Pesticides :$pesticides1',
+                                    'Pesticides : $pesticides1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -218,7 +247,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Profit Margin :$profitMargin1',
+                                    'Profit Margin : $profitMargin1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -228,7 +257,7 @@ class _DatabaseState extends State<Database> {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Yield Time :$yieldTime1',
+                                    'Yield Time : $yieldTime1',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
@@ -239,22 +268,6 @@ class _DatabaseState extends State<Database> {
                             ),
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(right: 16, top: 8),
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     crossAxisAlignment: CrossAxisAlignment.end,
-                        //     children: <Widget>[
-                        //       Text(
-                        //         "test",
-                        //         style: TextStyle(
-                        //           fontWeight: FontWeight.w600,
-                        //           fontSize: 22,
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
