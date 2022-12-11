@@ -28,7 +28,6 @@ class _CropListState extends State<CropList>
 
   //access a variable from another file
 
-
   @override
   void initState() {
     super.initState();
@@ -199,20 +198,20 @@ class _CropListState extends State<CropList>
                           setState(() {
                             cropAdder(str, false);
                           });
-                          var url1 = globalServerLink;
-                          DatabaseReference databaseRef1 =
-                              FirebaseDatabase.instance.refFromURL(url1);
-                          databaseRef1
-                              .child("Users")
-                              .child(name1)
-                              .child("crops")
-                              .child(str)
-                              .set({
-                            "humidity": 38,
-                            "moisture": 41.1,
-                            "temp": 22.1,
-                            "value": false
-                          });
+                          // var url1 = "https://cropdata-fa565-default-rtdb.firebaseio.com/";  
+                          // DatabaseReference databaseRef1 =
+                          //     FirebaseDatabase.instance.refFromURL(url1);
+                          // databaseRef1
+                          //     .child("Users")
+                          //     .child(name1)
+                          //     .child("crops")
+                          //     .child(str)
+                          //     .set({
+                          //   "humidity": 38,
+                          //   "moisture": 41.1,
+                          //   "temp": 22.1,
+                          //   "value": false
+                          // });
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('$str Added'),
                             duration: Duration(seconds: 1),
