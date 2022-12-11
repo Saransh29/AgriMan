@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import '../temputil.dart';
@@ -54,6 +55,9 @@ class _DatabaseState extends State<Database> {
   String? yieldTime1;
 
   String onsearch(String crop) {
+    if (crop == "horse gram") crop = "horse%20Gram";
+    if (crop == "sweet potato") crop = "sweet%20Potato";
+    if (crop == "red gram") crop = "red%20gram";
     var url2 =
         "https://test123-7b3b5-default-rtdb.asia-southeast1.firebasedatabase.app/Crops/$crop.json";
     return url2;
@@ -64,7 +68,7 @@ class _DatabaseState extends State<Database> {
         "https://test123-7b3b5-default-rtdb.asia-southeast1.firebasedatabase.app/Crops.json";
     final response = await http.get(Uri.parse(url));
     setState(() {
-      if (response.body.contains(_search.text)) {
+      if (response.body.contains(_search.text.toLowerCase())) {
         found = true;
         cropname = _search.text;
         beforesearch = false;
@@ -75,10 +79,9 @@ class _DatabaseState extends State<Database> {
   }
 
   Future<Crop> searchdb() async {
-    var url = onsearch(_search.text);
+    var url = onsearch(_search.text.toLowerCase());
     final response = await http.get(Uri.parse(url));
     Crop crop1 = Crop.fromJson(jsonDecode(response.body));
-    print(crop1.costOfFarming);
     setState(() {
       beforesearch = false;
 
@@ -89,9 +92,6 @@ class _DatabaseState extends State<Database> {
       profitMargin1 = crop1.profitMargin;
       yieldTime1 = crop1.yieldTime;
     });
-    print(crop1.costOfFarming);
-    print(crop1.fertiliser);
-
     return crop1;
   }
 
@@ -108,6 +108,7 @@ class _DatabaseState extends State<Database> {
                 height: 60,
               ),
               getSearchBarUI(),
+              // Cropcard()
               beforesearch
                   ? Container(
                       height: size.height / 10,
@@ -119,7 +120,7 @@ class _DatabaseState extends State<Database> {
                           children: [
                             Text(
                               "Search for a crop",
-                              style: TextStyle(
+                              style: GoogleFonts.openSans(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                               ),
@@ -140,7 +141,7 @@ class _DatabaseState extends State<Database> {
                               children: [
                                 Text(
                                   "Crop not found",
-                                  style: TextStyle(
+                                  style: GoogleFonts.openSans(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15,
                                   ),
@@ -155,6 +156,7 @@ class _DatabaseState extends State<Database> {
   }
 
   Widget Cropcard() {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 15, bottom: 8),
       child: Container(
@@ -175,15 +177,16 @@ class _DatabaseState extends State<Database> {
               Column(
                 children: <Widget>[
                   AspectRatio(
-                    aspectRatio: 2,
+                    aspectRatio: 2.1,
                     child: Image.network(
                       'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                      // height: size.height / 2,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
                     color: Color(0xFFFFFFFF),
-                    height: 300,
+                    // height: 300,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -191,78 +194,247 @@ class _DatabaseState extends State<Database> {
                         Expanded(
                           child: Container(
                             child: Padding(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, bottom: 8),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
-                                    'Crop : $cropname',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 19,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      '$cropname',
+                                      style: GoogleFonts.openSans(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 19,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
-                                    'Cost of Farming : $costOfFarming1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Cost of Farming : ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$costOfFarming1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    textScaleFactor: 0.5,
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
-                                    'Fertiliser : $fertiliser1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Profit Margin :  ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$profitMargin1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    textScaleFactor: 0.5,
+                                  ),
+                                  // Text(
+                                  //   'Profit Margin : $profitMargin1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
+                                  // Text(
+                                  //   'Cost of Farming : $costOfFarming1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Yield Time :  ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$yieldTime1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    textScaleFactor: 0.5,
+                                  ),
+                                  // Text(
+                                  //   'Yield Time : $yieldTime1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Fertiliser :  ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$fertiliser1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    textScaleFactor: 0.5,
+                                  ),
+                                  // Text(
+                                  //   'Fertiliser : $fertiliser1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Optimal Temprature :  ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$optimalTemprature1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    textScaleFactor: 0.5,
+                                  ),
+                                  // Text(
+                                  //   'Optimal Temprature : $optimalTemprature1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        fontSize: 45,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Pesticides :  ',
+                                          style: GoogleFonts.openSans(
+                                              color: yellow,
+                                              letterSpacing: 0.1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 35),
+                                        ),
+                                        TextSpan(
+                                          text: '$pesticides1',
+                                          style: GoogleFonts.openSans(
+                                            color: black,
+                                            letterSpacing: 0.1,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    textScaleFactor: 0.5,
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
-                                    'Optimal Temprature : $optimalTemprature1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Pesticides : $pesticides1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Profit Margin : $profitMargin1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Yield Time : $yieldTime1',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   'Pesticides : $pesticides1',
+                                  //   style: GoogleFonts.openSans(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     fontSize: 12,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -306,7 +478,11 @@ class _DatabaseState extends State<Database> {
                       left: 16, right: 16, top: 4, bottom: 4),
                   child: TextField(
                     controller: _search,
-                    style: const TextStyle(
+                    onSubmitted: (value) {
+                      checkdb();
+                      searchdb();
+                    },
+                    style: GoogleFonts.openSans(
                       fontSize: 16,
                     ),
                     cursorColor: Color(0xFF54D3C2),

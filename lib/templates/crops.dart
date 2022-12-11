@@ -10,6 +10,10 @@ import 'package:agriman/home_temp.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/constants.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:agriman/home_temp.dart';
 
 class CropList extends StatefulWidget {
   const CropList({Key? key}) : super(key: key);
@@ -23,19 +27,29 @@ class _CropListState extends State<CropList>
   late AnimationController _controller;
   var str;
   final cropname = TextEditingController();
-  List<String> cropNames = ['Onion', 'EggPlant'];
+  // List<String> cropNames = ["Onion"];
   List<PlantModel> crops = [];
-
+  List<String> ImagesList = ["onion", "eggplant"];
   //access a variable from another file
-
 
   @override
   void initState() {
+    Listfetch().then((value) {
+      setState(() {
+        cropNames = value;
+      });
+    });
     super.initState();
     _controller = AnimationController(vsync: this);
 
+    printer();
+
     for (String s in cropNames) {
-      cropAdder(s, true);
+      // add if condition to check if image is given or not
+      if (ImagesList.contains(s))
+        cropAdder(s, true);
+      else
+        cropAdder(s, false);
     }
   }
 
@@ -45,11 +59,73 @@ class _CropListState extends State<CropList>
     super.dispose();
   }
 
-  void cropAdder(String s, bool imageGiven) {
+  void printer() {
+    print("------------------");
+    for (String s in cropNames) {
+      print(s);
+    }
+    print("------------------");
+  }
+
+  void cropAdder(String s, bool imageGiven) async {
     String r = s + DateTime.now().toString();
     var bytes = utf8.encode(r);
     Digest md5res = md5.convert(bytes);
     crops.add(new PlantModel(md5res.toString(), s, imageGiven));
+  }
+
+  void nodeAdder() {
+    var url1 = globalServerLink;
+    DatabaseReference databaseRef1 = FirebaseDatabase.instance.refFromURL(url1);
+    databaseRef1
+        .child("Users")
+        .child(name1)
+        .child("crops")
+        .child(str)
+        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
+  }
+
+  Future<List<String>> Listfetch() async {
+    var url =
+        "https://cropdata-fa565-default-rtdb.firebaseio.com/Users/$name1/crops.json";
+    final response = await http.get(Uri.parse(url));
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+    List<String> cropNames1 = [];
+    extractedData.forEach((cropId, cropData) {
+      cropNames1.add(cropId);
+    });
+    return cropNames1;
+  }
+
+  Future<void> cropnamefetcher() async {
+    var url =
+        "https://cropdata-fa565-default-rtdb.firebaseio.com/Users/$name1/crops.json";
+    final response = await http.get(Uri.parse(url));
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+    List<String> cropNames1 = [];
+    extractedData.forEach((cropId, cropData) {
+      // print("------------------");
+      // print(cropData);
+      cropNames1.add(cropId);
+
+      // print(cropId); //this returns the crop name from db
+      // crops.add(PlantModel(cropId, cropData['name'], true));
+    });
+    // print("------------------");
+    // for (String s in cropNames1) {
+    //   print(s);
+    // }
+    // print("------------------");
+    setState(() {
+      cropNames = cropNames1;
+    });
+    // print("------------------");
+    // for (String s in cropNames) {
+    //   print(s);
+    // }
+    // print("------------------");
   }
 
   Widget PlantCell(
@@ -64,6 +140,7 @@ class _CropListState extends State<CropList>
       ),
       child: GestureDetector(
         onTap: () {
+          // printer();
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PlantData(crops[index])));
         },
@@ -199,20 +276,8 @@ class _CropListState extends State<CropList>
                           setState(() {
                             cropAdder(str, false);
                           });
-                          var url1 = globalServerLink;
-                          DatabaseReference databaseRef1 =
-                              FirebaseDatabase.instance.refFromURL(url1);
-                          databaseRef1
-                              .child("Users")
-                              .child(name1)
-                              .child("crops")
-                              .child(str)
-                              .set({
-                            "humidity": 38,
-                            "moisture": 41.1,
-                            "temp": 22.1,
-                            "value": false
-                          });
+                          kIsWeb ? null : nodeAdder();
+
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('$str Added'),
                             duration: Duration(seconds: 1),

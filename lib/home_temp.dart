@@ -15,6 +15,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 String name1 = "User";
+List<String> cropNames = [];
 
 Future<WeatherResponse> getWeather(String city) async {
   // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -114,12 +115,31 @@ class _Home1State extends State<Home1> {
     });
   }
 
+  Future<List<String>> Listfetch() async {
+    var url =
+        "https://cropdata-fa565-default-rtdb.firebaseio.com/Users/$name1/crops.json";
+    final response = await http.get(Uri.parse(url));
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+    List<String> cropNames1 = [];
+    extractedData.forEach((cropId, cropData) {
+      cropNames1.add(cropId);
+    });
+    return cropNames1;
+  }
+
   @override
   void initState() {
     super.initState();
     getname();
     getLocation();
     getAddress(latitude, longitude);
+
+    Listfetch().then((value) {
+      setState(() {
+        cropNames = value;
+      });
+    });
   }
 
   Widget build(BuildContext context) {

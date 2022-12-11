@@ -7,6 +7,7 @@ import 'auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_page.dart';
 import 'package:agriman/theme.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -22,6 +23,23 @@ class _CreateAccountState extends State<CreateAccount> {
   String nami = "sk";
 
   @override
+  void nodeAdder() {
+    var url1 = globalServerLink;
+    DatabaseReference databaseRef1 = FirebaseDatabase.instance.refFromURL(url1);
+    databaseRef1
+        .child("Users")
+        .child(nami)
+        .child("crops")
+        .child("onion")
+        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
+    databaseRef1
+        .child("Users")
+        .child(nami)
+        .child("crops")
+        .child("eggplant")
+        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
+  }
+
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
@@ -145,31 +163,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 isLoading = false;
                 nami = _name.text;
               });
-              var url1 = globalServerLink;
-              DatabaseReference databaseRef1 =
-                  FirebaseDatabase.instance.refFromURL(url1);
-              databaseRef1
-                  .child("Users")
-                  .child(nami)
-                  .child("crops")
-                  .child("onion")
-                  .set({
-                "humidity": 38,
-                "moisture": 41.1,
-                "temp": 22.1,
-                "value": false
-              });
-              databaseRef1
-                  .child("Users")
-                  .child(nami)
-                  .child("crops")
-                  .child("eggplant")
-                  .set({
-                "humidity": 38,
-                "moisture": 41.1,
-                "temp": 22.1,
-                "value": false
-              });
+              kIsWeb ? null : nodeAdder();
 
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => Home1()));
