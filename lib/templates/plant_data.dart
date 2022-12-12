@@ -124,8 +124,10 @@ class _PlantDataState extends State<PlantData> {
             children: [
               Hero(
                   tag: model,
-                  child: Transform.scale(
-                      scale: 0.5, child: Image.asset(model.imageStr))),
+                  // child: Transform.scale(
+                  //     scale: 0.5, child: Image.asset(model.imageStr))),
+                  child: Image.asset(model.imageStr)),
+              SizedBox(height: 50),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -271,7 +273,6 @@ class _PlantDataState extends State<PlantData> {
                     ],
                   ),
                   SizedBox(height: 28),
-                 
                 ],
               ),
             ],

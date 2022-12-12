@@ -29,7 +29,7 @@ class _CropListState extends State<CropList>
   final cropname = TextEditingController();
   // List<String> cropNames = ["Onion"];
   List<PlantModel> crops = [];
-  List<String> ImagesList = ["onion", "eggplant"];
+  List<String> ImagesList = ["onion", "eggplant", "potato", "wheat"];
   //access a variable from another file
 
   @override

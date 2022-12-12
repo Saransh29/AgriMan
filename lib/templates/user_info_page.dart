@@ -113,13 +113,16 @@ class _DatabaseState extends State<Database> {
                   ? Container(
                       height: size.height / 10,
                       width: size.width / 1.1,
+                      color: Color(0xFFDBDFFD),
                       child: Card(
+                        color: Color(0xFFDBDFFD),
+                        elevation: 0,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Search for a crop",
+                              "Search for a crop...",
                               style: GoogleFonts.openSans(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,

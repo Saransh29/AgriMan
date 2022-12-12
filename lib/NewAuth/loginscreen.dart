@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'auth.dart';
 import 'package:flutter/material.dart';
-import 'package:agriman/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

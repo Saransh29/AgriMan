@@ -5,7 +5,6 @@ import '../temputil.dart';
 import '../utils/constants.dart';
 import 'auth.dart';
 import 'package:flutter/material.dart';
-import 'package:agriman/home_page.dart';
 import 'package:agriman/theme.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -36,7 +35,7 @@ class _CreateAccountState extends State<CreateAccount> {
         .child("Users")
         .child(nami)
         .child("crops")
-        .child("eggplant")
+        .child("wheat")
         .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
   }
 

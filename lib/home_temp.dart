@@ -146,6 +146,7 @@ class _Home1State extends State<Home1> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: HexColor('#242F9B'),
+      // backgroundColor: HexColor('#DBDFFD'),
       // appBar: AppBar(
       //   backgroundColor: scaffoldbg,
       //   title: Text('Main Menu'),
@@ -171,6 +172,7 @@ class _Home1State extends State<Home1> {
             ),
             child: Container(
               color: HexColor('#DBDFFD'),
+              // color: white,
               height: 660,
             ),
           ),
@@ -219,8 +221,8 @@ class _Home1State extends State<Home1> {
                                 //   width: double.maxFinite,
                                 //   fit: BoxFit.cover,
                                 // ),
-                                child: Image.network(
-                                  'https://i.imgur.com/9CiNTri.png',
+                                child: Image.asset(
+                                  'assets/images/backimg.png',
                                   height: 220.0,
                                   width: double.maxFinite,
                                   fit: BoxFit.cover,
@@ -304,20 +306,20 @@ class _Home1State extends State<Home1> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    const Spacer(),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: Text(
-                                        "2 Crops ",
-                                        style: GoogleFonts.openSans(
-                                          color: black,
-                                          fontSize: 18,
-                                          letterSpacing: 0 / 5,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
+                                    // const Spacer(),
+                                    // Padding(
+                                    //   padding:
+                                    //       const EdgeInsets.only(right: 8.0),
+                                    //   child: Text(
+                                    //     "2 Crops ",
+                                    //     style: GoogleFonts.openSans(
+                                    //       color: black,
+                                    //       fontSize: 18,
+                                    //       letterSpacing: 0 / 5,
+                                    //       fontWeight: FontWeight.w500,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ],
@@ -368,8 +370,8 @@ class _Home1State extends State<Home1> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/images/crops.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -478,8 +480,8 @@ class _Home1State extends State<Home1> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.pexels.com/photos/5245865/pexels-photo-5245865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                              child: Image.asset(
+                                'assets/images/weather.webp',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -576,8 +578,8 @@ class _Home1State extends State<Home1> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                              child: Image.asset(
+                                'assets/images/database.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -679,8 +681,8 @@ class _Home1State extends State<Home1> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://cdn.crunchify.com/wp-content/uploads/2012/09/rupee-symbol-02.jpeg',
+                              child: Image.asset(
+                                'assets/images/marketprice.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,

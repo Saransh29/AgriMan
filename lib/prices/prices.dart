@@ -24,6 +24,7 @@ class _pricesState extends State<prices> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: HexColor('#DBDFFD'),
+      // backgroundColor: white,
       // appBar: AppBar(
       //   backgroundColor: scaffoldbg,
       //   title: Text('Main Menu'),
@@ -49,8 +50,18 @@ class _pricesState extends State<prices> {
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 40, bottom: 20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Container(
+                    child: Text(
+                      "Market Prices",
+                      style: GoogleFonts.openSans(
+                        color: black,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 16.0,
                   ),
@@ -92,8 +103,8 @@ class _pricesState extends State<prices> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/prices/azadpur.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -177,8 +188,8 @@ class _pricesState extends State<prices> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/prices/sonipat.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -262,8 +273,8 @@ class _pricesState extends State<prices> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/prices/najafgarh.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -347,8 +358,8 @@ class _pricesState extends State<prices> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/prices/panipat.webp',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -432,8 +443,8 @@ class _pricesState extends State<prices> {
                                 topLeft: Radius.circular(12.0),
                                 bottomLeft: Radius.circular(12.0),
                               ),
-                              child: Image.network(
-                                'https://images.unsplash.com/photo-1511735643442-503bb3bd348a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcHxlbnwwfHwwfHw%3D&w=1000&q=80',
+                              child: Image.asset(
+                                'assets/prices/rohtak.jpg',
                                 height: 220.0,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,

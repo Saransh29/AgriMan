@@ -15,16 +15,16 @@ class welcome extends StatelessWidget {
           kIsWeb
               ? Container(
                   alignment: Alignment.center,
-                  child: Image.network(
-                    'https://i.imgur.com/fkTPC49.png',
+                  child: Image.asset(
+                    'assets/images/welcome.png',
                     height: 400,
                     fit: BoxFit.cover,
                   ),
                 )
               : Container(
                   alignment: Alignment.center,
-                  child: Image.network(
-                    'https://i.imgur.com/fkTPC49.png',
+                  child: Image.asset(
+                    'assets/images/welcome.png',
                     width: double.maxFinite,
                     fit: BoxFit.cover,
                   ),
