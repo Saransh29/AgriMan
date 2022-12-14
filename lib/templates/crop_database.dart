@@ -46,7 +46,6 @@ class _DatabaseState extends State<Database> {
   bool beforesearch = true;
 
   String cropname = "";
-
   String? costOfFarming1;
   String? fertiliser1;
   String? optimalTemprature1;
@@ -82,9 +81,9 @@ class _DatabaseState extends State<Database> {
     var url = onsearch(_search.text.toLowerCase());
     final response = await http.get(Uri.parse(url));
     Crop crop1 = Crop.fromJson(jsonDecode(response.body));
+    
     setState(() {
       beforesearch = false;
-
       costOfFarming1 = crop1.costOfFarming;
       fertiliser1 = crop1.fertiliser;
       optimalTemprature1 = crop1.optimalTemprature;

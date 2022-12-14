@@ -37,17 +37,16 @@ class _PlantDataState extends State<PlantData> {
   void initState() {
     super.initState();
     readDataFromFirebase();
-    waterstatus();
+    MotorStatus();
     Timer _ = Timer.periodic(const Duration(seconds: 5), (timer) {
       readDataFromFirebase();
-      waterstatus();
+      MotorStatus();
     });
   }
 
   Future<void> updateVarsFromFirebase(String url, int which) async {
     try {
       final response = await http.get(Uri.parse(url));
-
       setState(() {
         String respBody = response.body;
         which == 0
@@ -56,14 +55,13 @@ class _PlantDataState extends State<PlantData> {
         if (double.parse(respBody) < 0)
           which == 0 ? temp = "0" : (which == 1 ? hum = "0" : moisture = "0");
       });
-    } catch (error) {
+    } 
+    catch (error) {
       rethrow;
     }
   }
 
   Future<void> readDataFromFirebase() async {
-// added firebase realtime database
-
     var url = "https://cropdata-fa565-default-rtdb.firebaseio.com/User/";
     var tempUrl = url + "temp.json";
     var humUrl = url + "humidity.json";
@@ -74,7 +72,7 @@ class _PlantDataState extends State<PlantData> {
     updateVarsFromFirebase(mosUrl, 2);
   }
 
-  Future<void> waterstatus() async {
+  Future<void> MotorStatus() async {
     var url =
         "https://cropdata-fa565-default-rtdb.firebaseio.com/User/value.json";
     final response = await http.get(Uri.parse(url));
@@ -83,31 +81,10 @@ class _PlantDataState extends State<PlantData> {
     });
   }
 
-  //to update the motor value in firebase realtime database
-  //------------------------/
-  // WORKING
-  //------------------------/
   void updateMotorValue(bool val) {
     var url = globalServerLink;
     DatabaseReference databaseRef = FirebaseDatabase.instance.refFromURL(url);
     databaseRef.child("User").update({"value": val});
-  }
-
-  void addchilddata(String name) {
-    var url1 = globalServerLink;
-    DatabaseReference databaseRef1 = FirebaseDatabase.instance.refFromURL(url1);
-    databaseRef1
-        .child("Users")
-        .child(name)
-        .child("crops")
-        .child("onion")
-        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
-    databaseRef1
-        .child("Users")
-        .child(name)
-        .child("crops")
-        .child("eggplant")
-        .set({"humidity": 38, "moisture": 41.1, "temp": 22.1, "value": false});
   }
 
   @override
