@@ -5,36 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:http/http.dart' as http;
-import 'models/weather_info.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'templates/weather_model.dart';
-import 'utils/constants.dart';
+
 import 'NewAuth/methods.dart';
 import 'temputil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
 String name1 = "User";
+String status = "Unavalible";
 List<String> cropNames = [];
-
-Future<WeatherResponse> getWeather(String city) async {
-  // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
-  final queryParameters = {
-    'q': city,
-    'appid': '6e1c4180ff94fa76a60376fd7857da97',
-    'units': 'metric'
-  };
-
-  final uri =
-      Uri.https('api.openweathermap.org', '/data/2.5/weather', queryParameters);
-
-  final response = await http.get(uri);
-
-  print(response.body);
-  final json = jsonDecode(response.body);
-  return WeatherResponse.fromJson(json);
-}
 
 class Home1 extends StatefulWidget {
   const Home1({Key? key}) : super(key: key);
@@ -64,11 +45,17 @@ class _Home1State extends State<Home1> {
       setState(() {
         userMap = value.data();
         name1 = userMap!['name'];
+        status = userMap!['status'];
       });
       print("__________________");
       print(userMap!['name']);
+      print(userMap!['status']);
       print("__________________");
     });
+  }
+
+  String statusgetter() {
+    return status;
   }
 
   String namegetter() {
@@ -84,7 +71,7 @@ class _Home1State extends State<Home1> {
         city = place.locality!;
         addbool = true;
       });
-      print(place.locality!);
+      // print(place.locality!);
     } catch (e) {
       setState(() {
         addbool = false;
@@ -125,44 +112,35 @@ class _Home1State extends State<Home1> {
     extractedData.forEach((cropId, cropData) {
       cropNames1.add(cropId);
     });
-    return cropNames1;
+    List<String> cropNames2 = await cropNames1;
+    for (int i = 0; i < cropNames2.length; i++) {
+      setState(() {
+        cropNames[i] = cropNames2[i];
+      });
+      ;
+    }
+    return cropNames2;
   }
 
   @override
   void initState() {
+    Listfetch();
     super.initState();
+    // Listfetch().then((value) {
+    //   setState(() {
+    //     cropNames = value;
+    //   });
+    // });
+
     getname();
     getLocation();
     getAddress(latitude, longitude);
-
-    Listfetch().then((value) {
-      setState(() {
-        cropNames = value;
-      });
-    });
   }
 
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: HexColor('#242F9B'),
-      // backgroundColor: HexColor('#DBDFFD'),
-      // appBar: AppBar(
-      //   backgroundColor: scaffoldbg,
-      //   title: Text('Main Menu'),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //         icon: Icon(Icons.logout), onPressed: () => logOut(context)),
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: IconButton(
-      //         icon: Icon(Icons.settings),
-      //         onPressed: () {},
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: SingleChildScrollView(
           child: Stack(
         children: [
@@ -173,7 +151,7 @@ class _Home1State extends State<Home1> {
             child: Container(
               color: HexColor('#DBDFFD'),
               // color: white,
-              height: 660,
+              height: 800,
             ),
           ),
           SafeArea(
@@ -266,9 +244,6 @@ class _Home1State extends State<Home1> {
                               ),
                             ],
                           ),
-                          // const SizedBox(
-                          //   height: 5.0,
-                          // ),
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 15,
@@ -279,11 +254,9 @@ class _Home1State extends State<Home1> {
                                 const SizedBox(
                                   width: 10.0,
                                 ),
-                                // ElevatedButton(
-                                //     onPressed: getname, child: Text('getname')),
-                                // Text(userMap!['name']),
                                 Text(
                                   userMap!['name'],
+                                  // 'Saransh Bibiyan',
                                   // "Nathan Drake",
                                   style: GoogleFonts.openSans(
                                     color: black,
@@ -299,6 +272,7 @@ class _Home1State extends State<Home1> {
                                   children: [
                                     Text(
                                       city,
+                                      // 'Sonipat',
                                       style: GoogleFonts.openSans(
                                         color: black,
                                         fontSize: 18,
@@ -411,15 +385,6 @@ class _Home1State extends State<Home1> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-
-                                    // Text(
-                                    //   "16 Video",
-                                    //   style: GoogleFonts.openSans(
-                                    //     color: black,
-                                    //     fontSize: 15,
-                                    //     fontWeight: FontWeight.w500,
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ],
@@ -433,6 +398,112 @@ class _Home1State extends State<Home1> {
                               child: SizedBox(
                                 height: double.infinity,
                                 width: 50,
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 14.0,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      status == 'active'
+                          ? Navigator.pushNamed(context, '/openAI')
+                          : Navigator.pushNamed(context, '/requestAI');
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(2),
+                      // height: size.height * 0.15,
+                      height: 120,
+                      width: double.maxFinite,
+                      decoration: const BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            16.0,
+                          ),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            spreadRadius: 5.0,
+                            offset: Offset(0.0, 10.0),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            width: 110,
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(12.0),
+                                bottomLeft: Radius.circular(12.0),
+                              ),
+                              child: Image.network(
+                                'https://scontent.fixc1-4.fna.fbcdn.net/v/t39.30808-6/306009231_580108473910767_2088220748777882536_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xg2XJTFq0NIAX_pg1HL&_nc_ht=scontent.fixc1-4.fna&oh=00_AfANSidZXeeV3PraKI2eSEyKxfoLJ9vQA1FIH64IePwHJQ&oe=63A487A8',
+                                height: 220.0,
+                                width: double.maxFinite,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 30, horizontal: 2),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'OpenAI',
+                                  style: GoogleFonts.openSans(
+                                    color: black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                // const Spacer(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Use AI to solve your problems",
+                                      style: GoogleFonts.openSans(
+                                        color: black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: SizedBox(
+                                height: double.infinity,
+                                width: 45,
                                 child: const Icon(
                                   Icons.arrow_forward_ios,
                                   color: black,

@@ -37,6 +37,7 @@ android/app/upload-keystore.jks
 /build/
 lib/utils/
 lib/weather/api/
+lib/openAI/api_key/
 # Web related
 # Symbolication related
 app.*.symbols

@@ -27,10 +27,10 @@ class _CropListState extends State<CropList>
   late AnimationController _controller;
   var str;
   final cropname = TextEditingController();
-  // List<String> cropNames = ["Onion"];
+
   List<PlantModel> crops = [];
   List<String> ImagesList = ["onion", "eggplant", "potato", "wheat"];
-  //access a variable from another file
+
 
   @override
   void initState() {
@@ -44,19 +44,16 @@ class _CropListState extends State<CropList>
 
     printer();
 
-    for (String s in cropNames) {
-      // add if condition to check if image is given or not
-      if (ImagesList.contains(s))
-        cropAdder(s, true);
-      else
-        cropAdder(s, false);
-    }
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> asyncMethod() async {
+    await Future.delayed(Duration(seconds: 2));
   }
 
   void printer() {
@@ -95,7 +92,14 @@ class _CropListState extends State<CropList>
     extractedData.forEach((cropId, cropData) {
       cropNames1.add(cropId);
     });
-    return cropNames1;
+    List<String> cropNames2 = await cropNames1;
+    for (String s in cropNames1) {
+      if (ImagesList.contains(s))
+        cropAdder(s, true);
+      else
+        cropAdder(s, false);
+    }
+    return cropNames2;
   }
 
   Future<void> cropnamefetcher() async {
@@ -106,26 +110,12 @@ class _CropListState extends State<CropList>
 
     List<String> cropNames1 = [];
     extractedData.forEach((cropId, cropData) {
-      // print("------------------");
-      // print(cropData);
       cropNames1.add(cropId);
-
-      // print(cropId); //this returns the crop name from db
-      // crops.add(PlantModel(cropId, cropData['name'], true));
     });
-    // print("------------------");
-    // for (String s in cropNames1) {
-    //   print(s);
-    // }
-    // print("------------------");
+
     setState(() {
       cropNames = cropNames1;
     });
-    // print("------------------");
-    // for (String s in cropNames) {
-    //   print(s);
-    // }
-    // print("------------------");
   }
 
   Widget PlantCell(

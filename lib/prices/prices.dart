@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:http/http.dart' as http;
 import '../models/weather_info.dart';
-import '../templates/weather_model.dart';
 import '../utils/constants.dart';
 import '../NewAuth/methods.dart';
 import '../temputil.dart';

@@ -5,12 +5,12 @@ import 'package:agriman/theme.dart';
 import 'package:agriman/weather/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:agriman/home_temp.dart';
-import 'package:agriman/templates/weather_info.dart';
 import 'package:agriman/templates/crops.dart';
 import 'package:agriman/templates/crop_database.dart';
-
 import 'package:agriman/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'openAI/fetch.dart';
+import 'openAI/request.dart';
 import 'prices/azadpur.dart';
 import 'prices/najafgarh.dart';
 import 'prices/panipat.dart';
@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
         '/rohtak': (context) => Rohtak(),
         '/najafgarh': (context) => Najafgarh(),
         '/panipat': (context) => Panipat(),
+        '/openAI': (context) => openaifetch(),
+        '/requestAI': (context) => requestAI(),
       },
     );
   }
